@@ -10,3 +10,4 @@ TODO:
 -   [ ] ViewPager
 -   [ ] Adapter for ViewPager
 - [ ] Add more scrolling options
+- [ ] add Palette support for TextView background
