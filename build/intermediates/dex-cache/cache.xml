@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.android.support\palette-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="060b30a619b8d3ba053e1d7dc08b3fdf0dd81530">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-008af3cf75954e3725e158d505eeccb2caafcbd6.jar" />
+    </item>
+    <item
         jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.android.support\gridlayout-v7\22.2.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
