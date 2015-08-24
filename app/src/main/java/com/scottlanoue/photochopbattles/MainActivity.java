@@ -1,7 +1,12 @@
 package com.scottlanoue.photochopbattles;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.design.widget.Snackbar;
@@ -9,6 +14,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 //import android.support.v7.widget.CardView;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +29,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
+
 import com.scottlanoue.photochopbattles.RedditJson.Link;
 import com.scottlanoue.photochopbattles.RedditJson.RedditFetcher;
 
@@ -34,12 +44,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout swipe;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recycleAdapter;
+    private Palette palette;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
     public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.LinkViewHolder> {
 
         private List<Link> linksList = new ArrayList<>();
+        Bitmap image = null;
 
         @Override
         public LinkViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -157,20 +170,47 @@ public class MainActivity extends AppCompatActivity {
             final Link link = linksList.get(i);
 
             linkHolder.title.setText(link.getTitle());
-//            linkHolder.score.setText(link.getScore() + " ");
-//            linkHolder.permaLink.setText(link.getPermaLink());
 
+            /*
+            If the link is a selfpost, we don't have a picture to load!
+             */
             if (link.getDomain().equals("self.photoshopbattles")) {
                 linkHolder.photo.setImageResource(R.drawable.text_post);
                 linkHolder.photo.setImageAlpha(128);
-//                Glide.with(getApplicationContext()).load(link.getUrl()).into(linkHolder.photo);
+                linkHolder.title.setBackgroundColor(Color.BLACK);
+                linkHolder.title.getBackground().setAlpha(80);
             } else {
                 linkHolder.photo.setImageAlpha(255);
                 Glide.with(getApplicationContext()).load(link.getUrl())
                         .centerCrop()
-//                        .placeholder(R.drawable.progress_indeterminate_horizontal)
                         .crossFade()
                         .into(linkHolder.photo);
+                /*
+                This commented out code generates the title's background color using Palette and Glide but is acting very wonky...
+                 */
+//                Glide.with(getApplicationContext())
+//                        .load(link.getUrl())
+//                        .asBitmap()
+//                        .into(new BitmapImageViewTarget(linkHolder.photo) {
+//                            @Override
+//                            public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
+//                                super.onResourceReady(bitmap, anim);
+//                                Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+//                                    @Override
+//                                    public void onGenerated(Palette palette) {
+//                                        if (palette.getDarkVibrantSwatch() != null) {
+//                                            linkHolder.title.setBackgroundColor(palette.getDarkVibrantSwatch().getRgb());
+//                                            linkHolder.title.getBackground().setAlpha(128);
+//                                        }
+//                                        else {
+//                                            linkHolder.title.setBackgroundColor(Color.BLACK);
+//                                            linkHolder.title.getBackground().setAlpha(80);
+//                                        }
+//                                    }
+//                                });
+//                            }
+//
+//                        });
             }
         }
 
