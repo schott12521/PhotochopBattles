@@ -1,19 +1,14 @@
 package com.scottlanoue.photochopbattles;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
-import android.view.View;
 import android.widget.ImageView;
 
+import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
 import com.scottlanoue.photochopbattles.RedditJson.Link;
-
-import java.io.InputStream;
 
 public class GalleryActivity extends Activity {
 
@@ -26,11 +21,8 @@ public class GalleryActivity extends Activity {
         Log.d("this is the link", passedLink + " ");
 
         ImageView galleryImage = (ImageView) findViewById(R.id.galleryImage);
-//        Glide.with(getApplicationContext()).load(passedLink.getUrl())
-//                .placeholder(R.drawable.abc_spinner_mtrl_am_alpha)
-//                .crossFade()
-//                .into(galleryImage);
-        new DownloadImagesTask(galleryImage).execute(passedLink.getUrl());
+//        Glide.with(getApplicationContext()).load(passedLink.getUrl()).placeholder(R.drawable.abc_spinner_mtrl_am_alpha).crossFade().into(galleryImage);
+        new DownloadImagesTask(findViewById(android.R.id.content), galleryImage).execute(passedLink.getUrl());
     }
 
     @Override
@@ -56,29 +48,5 @@ public class GalleryActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private class DownloadImagesTask extends AsyncTask<String, Void, Bitmap> {
-
-        ImageView bitmapImage;
-
-        public DownloadImagesTask(ImageView image) {
-            bitmapImage = image;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urlsToShow = urls[0];
-            Bitmap bitImage = null;
-            try {
-                InputStream in = new java.net.URL(urlsToShow).openStream();
-                bitImage = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {}
-            return bitImage;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bitmapImage.setImageBitmap(result);
-            findViewById(R.id.progressBar).setVisibility(View.GONE);
-        }
     }
 }

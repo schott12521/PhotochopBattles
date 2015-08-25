@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 linkHolder.photo.setImageResource(R.drawable.text_post);
                 linkHolder.photo.setImageAlpha(128);
                 linkHolder.title.setBackgroundColor(Color.BLACK);
-                linkHolder.title.getBackground().setAlpha(80);
+                linkHolder.title.getBackground().setAlpha(128);
             } else {
                 linkHolder.photo.setImageAlpha(255);
                 Glide.with(getApplicationContext()).load(link.getUrl())
