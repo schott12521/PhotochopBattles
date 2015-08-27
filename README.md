@@ -10,4 +10,6 @@ TODO:
 -   [ ] ViewPager
 -   [ ] Adapter for ViewPager
 - [ ] Add more scrolling options
-- [ ] add Palette support for TextView background
+- [x] Add Palette support for TextView background
+ - [ ] Fix bug with RecyclerView recycling the wrong content
+- [ ] Add endless reading support 
