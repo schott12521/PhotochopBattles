@@ -188,29 +188,29 @@ public class MainActivity extends AppCompatActivity {
                 /*
                 This commented out code generates the title's background color using Palette and Glide but is acting very wonky...
                  */
-//                Glide.with(getApplicationContext())
-//                        .load(link.getUrl())
-//                        .asBitmap()
-//                        .into(new BitmapImageViewTarget(linkHolder.photo) {
-//                            @Override
-//                            public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
-//                                super.onResourceReady(bitmap, anim);
-//                                Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
-//                                    @Override
-//                                    public void onGenerated(Palette palette) {
-//                                        if (palette.getDarkVibrantSwatch() != null) {
-//                                            linkHolder.title.setBackgroundColor(palette.getDarkVibrantSwatch().getRgb());
-//                                            linkHolder.title.getBackground().setAlpha(128);
-//                                        }
-//                                        else {
-//                                            linkHolder.title.setBackgroundColor(Color.BLACK);
-//                                            linkHolder.title.getBackground().setAlpha(80);
-//                                        }
-//                                    }
-//                                });
-//                            }
-//
-//                        });
+                Glide.with(getApplicationContext())
+                        .load(link.getUrl())
+                        .asBitmap()
+                        .into(new BitmapImageViewTarget(linkHolder.photo) {
+                            @Override
+                            public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
+                                super.onResourceReady(bitmap, anim);
+                                Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+                                    @Override
+                                    public void onGenerated(Palette palette) {
+                                        if (palette.getDarkVibrantSwatch() != null) {
+                                            linkHolder.title.setBackgroundColor(palette.getDarkVibrantSwatch().getRgb());
+                                            linkHolder.title.getBackground().setAlpha(128);
+                                        }
+                                        else {
+                                            linkHolder.title.setBackgroundColor(Color.BLACK);
+                                            linkHolder.title.getBackground().setAlpha(80);
+                                        }
+                                    }
+                                });
+                            }
+
+                        });
             }
         }
 
