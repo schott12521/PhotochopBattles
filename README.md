@@ -14,3 +14,4 @@ TODO:
 - [x] Add Palette support for TextView background
  - [ ] Fix bug with RecyclerView recycling the wrong content
 - [ ] Add endless reading support 
+- [ ] Make Refreshing the page actually relaod the content
