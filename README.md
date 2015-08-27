@@ -5,7 +5,8 @@ Android app focusing on creating and implementing a fun and easy way to browse R
 TODO:
 - [ ] refactor and cleanup code
 - [ ] documentation
-- [ ] grab JSON from permalink and create array of images from thread
+- [x] grab JSON from permalink and create array of images from thread
+ - [ ] Load all images into ViewPager now from CommentFetcher
 - [ ] finish the Gallery
 -   [ ] ViewPager
 -   [ ] Adapter for ViewPager
