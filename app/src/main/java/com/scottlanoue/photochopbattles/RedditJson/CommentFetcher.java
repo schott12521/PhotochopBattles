@@ -125,7 +125,7 @@ public class CommentFetcher {
 			}
 		}
 		reader.endObject();
-		return new Comment(body, author, bodyHtml, score);
+		return new Comment(author, body, bodyHtml, score);
 	}
 	
 	private ArrayList<Comment> returnCommentsList() {

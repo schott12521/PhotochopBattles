@@ -79,7 +79,7 @@ public class GalleryActivity extends AppCompatActivity {
         request.connect();
         List<Comment> comments = fetch.readJsonStream((InputStream) request.getContent());
 
-        mAdapter = new GalleryViewPagerAdapter(comments.size(), getURLSfromCommments(comments), this.getApplicationContext());
+        mAdapter = new GalleryViewPagerAdapter(comments.size() - 1, getURLSfromCommments(comments), this.getApplicationContext(), comments);
         mPager = (ViewPager) findViewById(R.id.viewPager);
         mPager.setAdapter(mAdapter);
     }
