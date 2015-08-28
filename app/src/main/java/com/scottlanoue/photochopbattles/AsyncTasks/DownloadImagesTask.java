@@ -32,6 +32,6 @@ public class DownloadImagesTask extends AsyncTask<String, Void, Bitmap> {
 
     protected void onPostExecute(Bitmap result) {
         bitmapImage.setImageBitmap(result);
-        view.findViewById(R.id.progressBar).setVisibility(View.GONE);
+//        view.findViewById(R.id.progressBar).setVisibility(View.GONE);
     }
 }

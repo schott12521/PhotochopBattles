@@ -12,14 +12,16 @@ public class Link implements Serializable {
     private String url;
     private String permaLink;
     private String domain;
+    private String id;
     private int score;
 
-    public Link(String title, String url, String permaLink, int score, String domain) {
+    public Link(String title, String url, String permaLink, int score, String domain, String id) {
         this.title = title;
         this.url = url;
         this.permaLink = permaLink;
         this.score = score;
         this.domain = domain;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -39,6 +41,8 @@ public class Link implements Serializable {
     }
 
     public String getDomain() { return domain; }
+
+    public String getId() { return id; }
 
     public String toString() {
         return title + " " + url + " " + permaLink + " " + score;

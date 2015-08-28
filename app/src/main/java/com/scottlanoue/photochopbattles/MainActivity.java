@@ -1,22 +1,15 @@
 package com.scottlanoue.photochopbattles;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.StrictMode;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-//import android.support.v7.widget.CardView;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,17 +17,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.bumptech.glide.request.target.SimpleTarget;
 
 import com.scottlanoue.photochopbattles.RedditJson.Link;
-import com.scottlanoue.photochopbattles.RedditJson.RedditFetcher;
+import com.scottlanoue.photochopbattles.RedditJson.LinkFetcher;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,14 +35,23 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String psbURL = "http://www.reddit.com/r/photoshopbattles/.json?limit=50";
+
+    /**
+     * Used for the RecyclerView
+     */
     private SwipeRefreshLayout swipe;
     private RecyclerView recyclerView;
-    private RecyclerViewAdapter recycleAdapter;
-    private Palette palette;
+    private RecyclerViewAdapter recyclerAdapter;
+
+    /**
+     * These objects are used for scroll detection
+     */
+    private boolean loading = true;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerLayout);
-        recycleAdapter = new RecyclerViewAdapter();
-        final RecyclerView.LayoutManager llm = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(llm);
-        recyclerView.setAdapter(recycleAdapter);
+        recyclerAdapter = new RecyclerViewAdapter();
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(recyclerAdapter);
 
 
-        new DownloadLinksTask().execute();
+        new DownloadLinksTask(psbURL, true).execute();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -74,10 +74,37 @@ public class MainActivity extends AppCompatActivity {
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                recyclerView.setVisibility(View.GONE);
-                recycleAdapter = new RecyclerViewAdapter();
-                new DownloadLinksTask().execute();
+                recyclerView.setVisibility(View.GONE);
+//                recyclerAdapter = new RecyclerViewAdapter();
+                new DownloadLinksTask(psbURL, true).execute();
             }
+        });
+
+//        Log.v("ok", gridLayoutManager.findLastVisibleItemPosition() + " ");
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                visibleItemCount = gridLayoutManager.getChildCount();
+                totalItemCount = gridLayoutManager.getItemCount();
+                pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
+
+                if (loading) {
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                        loading = false;
+//                        Log.v("...", psbURL + "?count" + totalItemCount + "&after=t3_" + recyclerAdapter.linksList.get(totalItemCount - 1).getId());
+//                        recyclerAdapter.linksList.get(totalItemCount).
+                        new DownloadLinksTask(psbURL + "?limit" + totalItemCount + "&after=t3_" + recyclerAdapter.linksList
+                            .get(totalItemCount - 1).getId(), false).execute();
+//                        recyclerAdapter.linksList.add(new Link("test", "url", "permLink", 10, "self.photoshopbattles", "34"));
+//                        recyclerAdapter.notifyDataSetChanged();
+                }
+                }
+            }
+
         });
     }
 
@@ -102,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.refresh) {
-            new DownloadLinksTask().execute();
+            new DownloadLinksTask(psbURL, true).execute();
         }
 
 //        if (id == R.id.reset) {
@@ -112,35 +139,64 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public List<Link> refresh() throws IOException {
-        recycleAdapter.disposeData();
-        Log.d("lets see", recycleAdapter.toString());
-//        recyclerView.setVisibility(View.GONE);
+    /**
+     * This method is used for the initial load or refreshing to get back to the first page.
+     * @param urlString
+     * @return
+     * @throws IOException
+     */
+    public List<Link> refresh(String urlString) throws IOException {
+//        loading = true;
+        recyclerAdapter.disposeData();
+//        Log.d("lets see", recyclerAdapter.toString());
+        recyclerView.setVisibility(View.GONE);
 
-        URL url = new URL("http://www.reddit.com/r/photoshopbattles.json");
-        RedditFetcher fetch = new RedditFetcher();
+        URL url = new URL(urlString);
+        LinkFetcher fetch = new LinkFetcher();
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
         request.setConnectTimeout(200);
 
         request.connect();
-        List<Link> linkList = fetch.readJsonStream((InputStream) request.getContent());
-        Snackbar.make(findViewById(R.id.swipeRefresh), "We did it!", Snackbar.LENGTH_SHORT).show();
-
-//        for (Link link : linkList) {
-//            text.append(link.toString());
-//            text.append("\n\n");
-//        }
-//        swipe.setRefreshing(false);
-        return linkList;
+        return fetch.readJsonStream((InputStream) request.getContent());
     }
 
-    private class DownloadLinksTask extends AsyncTask<String, Void, String> {
+    /**
+     * This method is used for adding data onto the end of the grid.
+     * @param urlString
+     * @return
+     * @throws IOException
+     */
+    public List<Link> neverEnding(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        LinkFetcher fetch = new LinkFetcher();
+        HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        request.setConnectTimeout(200);
+
+        request.connect();
+
+        loading = true;
+
+        return fetch.readJsonStream((InputStream) request.getContent());
+    }
+
+    private class DownloadLinksTask extends AsyncTask<String, String, String> {
         List<Link> links = null;
+        String url;
+        boolean firstRefresh;
+
+        public DownloadLinksTask(String url, boolean firstRefresh) {
+            this.url = url;
+            this.firstRefresh = firstRefresh;
+        }
 
         @Override
         protected String doInBackground(String... urls) {
             try {
-               links = refresh();
+                if (firstRefresh) {
+                    links = refresh(url);
+                } else {
+                    links = neverEnding(url);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -149,15 +205,17 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            swipe.setRefreshing(false);
-            recycleAdapter.addData(links);
+            if (swipe.isRefreshing()) {
+                swipe.setRefreshing(false);
+            }
+            recyclerAdapter.addData(links);
+            recyclerView.setVisibility(View.VISIBLE);
         }
     }
 
     public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.LinkViewHolder> {
 
         private List<Link> linksList = new ArrayList<>();
-        Bitmap image = null;
 
         @Override
         public LinkViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -183,10 +241,11 @@ public class MainActivity extends AppCompatActivity {
                 linkHolder.photo.setImageAlpha(255);
                 Glide.with(getApplicationContext()).load(link.getUrl())
                         .centerCrop()
+                        .fitCenter()
                         .crossFade()
                         .into(linkHolder.photo);
                 /*
-                This commented out code generates the title's background color using Palette and Glide but is acting very wonky...
+                This code generates the title's background color using Palette and Glide but is acting very wonky...
                  */
                 Glide.with(getApplicationContext())
                         .load(link.getUrl())
@@ -195,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
                                 super.onResourceReady(bitmap, anim);
-                                Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+                                Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
                                     @Override
                                     public void onGenerated(Palette palette) {
                                         if (palette.getDarkVibrantSwatch() != null) {
@@ -209,7 +268,6 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
                             }
-
                         });
             }
         }

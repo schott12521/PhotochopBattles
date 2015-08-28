@@ -5,7 +5,8 @@
     android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
-    android:paddingTop="0dp">
+    android:paddingTop="0dp"
+    android:fitsSystemWindows="true" >
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
@@ -18,7 +19,8 @@
             android:layout_height="match_parent"
             android:paddingLeft="2dp"
             android:paddingRight="2dp"
-            android:scrollbars="vertical" >
+            android:scrollbars="vertical"
+            android:clipToPadding="false">
         </android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
