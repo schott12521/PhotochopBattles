@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
 import com.scottlanoue.photochopbattles.MainActivity;
 import com.scottlanoue.photochopbattles.R;
@@ -21,6 +22,7 @@ import com.scottlanoue.photochopbattles.RedditJson.Comment;
 
 import org.w3c.dom.Text;
 
+import java.lang.annotation.Target;
 import java.util.List;
 
 public class GalleryViewPagerAdapter extends PagerAdapter {
@@ -58,8 +60,15 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
         TextView caption = (TextView) itemView.findViewById(R.id.galleryCaption);
 
         caption.setText(commentsList.get(position).getBody());
-        new DownloadImagesTask(itemView, image).execute(urls[position]);
-        image.setAdjustViewBounds(true);
+//        new DownloadImagesTask(itemView, image).execute(urls[position]);
+        Glide.with(mContext).load(urls[position])
+                .override(com.bumptech.glide.request.target.Target.SIZE_ORIGINAL, com.bumptech.glide.request.target.Target.SIZE_ORIGINAL)
+                .centerCrop()
+                .fitCenter()
+                .crossFade()
+                .into(image);
+//        image.setAdjustViewBounds(true);
+        itemView.findViewById(R.id.progressBar).setVisibility(View.GONE);
 
         ((ViewPager) container).addView(itemView);
         return itemView;

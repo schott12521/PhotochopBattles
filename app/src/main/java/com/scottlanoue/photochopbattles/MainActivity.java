@@ -232,7 +232,6 @@ public class MainActivity extends AppCompatActivity {
                 linkHolder.photo.setImageAlpha(128);
                 linkHolder.title.setBackgroundColor(Color.BLACK);
                 linkHolder.title.getBackground().setAlpha(128);
-                linkHolder.photo.setBackgroundColor(Color.WHITE);
             } else {
                 linkHolder.photo.setImageAlpha(255);
                 Glide.with(getApplicationContext()).load(link.getUrl())
@@ -256,12 +255,10 @@ public class MainActivity extends AppCompatActivity {
 //                                        if (palette.getLightVibrantSwatch() != null) {
 //                                            linkHolder.title.setBackgroundColor(palette.getLightVibrantSwatch().getRgb());
 //                                            linkHolder.title.getBackground().setAlpha(128);
-//                                            linkHolder.photo.setBackgroundColor(palette.getDarkVibrantSwatch().getRgb());
 //                                        }
 //                                        else {
 //                                            linkHolder.title.setBackgroundColor(Color.BLACK);
 //                                            linkHolder.title.getBackground().setAlpha(80);
-//                                            linkHolder.photo.setBackgroundColor(Color.WHITE);
 //                                        }
 //                                    }
 //                                });
