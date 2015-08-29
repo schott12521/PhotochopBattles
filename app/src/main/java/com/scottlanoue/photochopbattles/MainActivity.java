@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
 
                 if (loading) {
-                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount - 3) {
                         loading = false;
 //                        Log.v("...", psbURL + "?count" + totalItemCount + "&after=t3_" + recyclerAdapter.linksList.get(totalItemCount - 1).getId());
 //                        recyclerAdapter.linksList.get(totalItemCount).
@@ -237,6 +237,7 @@ public class MainActivity extends AppCompatActivity {
                 linkHolder.photo.setImageAlpha(128);
                 linkHolder.title.setBackgroundColor(Color.BLACK);
                 linkHolder.title.getBackground().setAlpha(128);
+                linkHolder.photo.setBackgroundColor(Color.WHITE);
             } else {
                 linkHolder.photo.setImageAlpha(255);
                 Glide.with(getApplicationContext()).load(link.getUrl())
@@ -247,28 +248,30 @@ public class MainActivity extends AppCompatActivity {
                 /*
                 This code generates the title's background color using Palette and Glide but is acting very wonky...
                  */
-                Glide.with(getApplicationContext())
-                        .load(link.getUrl())
-                        .asBitmap()
-                        .into(new BitmapImageViewTarget(linkHolder.photo) {
-                            @Override
-                            public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
-                                super.onResourceReady(bitmap, anim);
-                                Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
-                                    @Override
-                                    public void onGenerated(Palette palette) {
-                                        if (palette.getDarkVibrantSwatch() != null) {
-                                            linkHolder.title.setBackgroundColor(palette.getDarkVibrantSwatch().getRgb());
-                                            linkHolder.title.getBackground().setAlpha(128);
-                                        }
-                                        else {
-                                            linkHolder.title.setBackgroundColor(Color.BLACK);
-                                            linkHolder.title.getBackground().setAlpha(80);
-                                        }
-                                    }
-                                });
-                            }
-                        });
+//                Glide.with(getApplicationContext())
+//                        .load(link.getUrl())
+//                        .asBitmap()
+//                        .into(new BitmapImageViewTarget(linkHolder.photo) {
+//                            @Override
+//                            public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
+//                                super.onResourceReady(bitmap, anim);
+//                                Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
+//                                    @Override
+//                                    public void onGenerated(Palette palette) {
+//                                        if (palette.getLightVibrantSwatch() != null) {
+//                                            linkHolder.title.setBackgroundColor(palette.getLightVibrantSwatch().getRgb());
+//                                            linkHolder.title.getBackground().setAlpha(128);
+//                                            linkHolder.photo.setBackgroundColor(palette.getDarkVibrantSwatch().getRgb());
+//                                        }
+//                                        else {
+//                                            linkHolder.title.setBackgroundColor(Color.BLACK);
+//                                            linkHolder.title.getBackground().setAlpha(80);
+//                                            linkHolder.photo.setBackgroundColor(Color.WHITE);
+//                                        }
+//                                    }
+//                                });
+//                            }
+//                        });
             }
         }
 
