@@ -1,17 +1,14 @@
 package com.scottlanoue.photochopbattles;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,8 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import com.scottlanoue.photochopbattles.RedditJson.Link;
 import com.scottlanoue.photochopbattles.RedditJson.LinkFetcher;
@@ -141,8 +136,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method is used for the initial load or refreshing to get back to the first page.
-     * @param urlString
-     * @return
+     * @param urlString link to the url to grab links from
+     * @return A list containing all of the fetched links
      * @throws IOException
      */
     public List<Link> refresh(String urlString) throws IOException {
@@ -162,8 +157,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method is used for adding data onto the end of the grid.
-     * @param urlString
-     * @return
+     * @param urlString Link to the url to grab more links from
+     * @return A list containing the new links that were freshly pulled from the url
      * @throws IOException
      */
     public List<Link> neverEnding(String urlString) throws IOException {
@@ -308,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
 
         public class LinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             TextView title;
-            TextView score;
+//            TextView score;
             ImageView photo;
 
             LinkViewHolder(View itemView) {
