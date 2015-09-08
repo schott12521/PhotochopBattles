@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * These objects are used for scroll detection
      */
-    private boolean loading = true;
+    private boolean notLoading = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
 
     @Override
@@ -79,10 +79,9 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.setVisibility(View.GONE);
 //                recyclerAdapter = new RecyclerViewAdapter();
                 new DownloadLinksTask(psbURL, true).execute();
+                notLoading = false;
             }
         });
-
-//        Log.v("ok", gridLayoutManager.findLastVisibleItemPosition() + " ");
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -94,16 +93,14 @@ public class MainActivity extends AppCompatActivity {
                 totalItemCount = gridLayoutManager.getItemCount();
                 pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
 
-                if (loading) {
+                if (notLoading) {
                     if ((visibleItemCount + pastVisiblesItems) >= totalItemCount - 3) {
-                        loading = false;
-//                        Log.v("...", psbURL + "?count" + totalItemCount + "&after=t3_" + recyclerAdapter.linksList.get(totalItemCount - 1).getId());
-//                        recyclerAdapter.linksList.get(totalItemCount).
-                        new DownloadLinksTask(psbURL + "?limit" + totalItemCount + "&after=t3_" + recyclerAdapter.linksList
-                            .get(totalItemCount - 1).getId(), false).execute();
-//                        recyclerAdapter.linksList.add(new Link("test", "url", "permLink", 10, "self.photoshopbattles", "34"));
-//                        recyclerAdapter.notifyDataSetChanged();
-                }
+                        notLoading = false;
+                        if (recyclerAdapter.linksList.size() > 0) {
+                            new DownloadLinksTask(psbURL + "?limit" + totalItemCount + "&after=t3_" + recyclerAdapter.linksList
+                                    .get(totalItemCount - 1).getId(), false).execute();
+                        }
+                    }
                 }
             }
 
@@ -130,9 +127,9 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        if (id == R.id.refresh) {
-            new DownloadLinksTask(psbURL, true).execute();
-        }
+//        if (id == R.id.refresh) {
+//            new DownloadLinksTask(psbURL, true).execute();
+//        }
 
 //        if (id == R.id.reset) {
 //            text.setText("");
@@ -148,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
      * @throws IOException
      */
     public List<Link> refresh(String urlString) throws IOException {
-//        loading = true;
         recyclerAdapter.disposeData();
 //        Log.d("lets see", recyclerAdapter.toString());
         recyclerView.setVisibility(View.GONE);
@@ -176,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
         request.connect();
 
-        loading = true;
+        notLoading = true;
 
         return fetch.readJsonStream((InputStream) request.getContent());
     }
@@ -212,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
             }
             recyclerAdapter.addData(links);
             recyclerView.setVisibility(View.VISIBLE);
+            notLoading = true;
         }
     }
 

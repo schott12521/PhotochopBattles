@@ -9,12 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.koushikdutta.ion.Ion;
 import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
 import com.scottlanoue.photochopbattles.MainActivity;
 import com.scottlanoue.photochopbattles.R;
@@ -55,14 +57,27 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
                 .inflate(R.layout.gallery_item, container, false);
-//        View itemView = LayoutInflater.from(container.getContext()).inflate(R.layout.gallery_item, container, false);
 
         // TODO get this layout to inflate
-//        ImageView image = (ImageView) itemView.findViewById(R.id.galleryImage);
         TextView caption = (TextView) itemView.findViewById(R.id.galleryCaption);
         ImageViewTouch image = (ImageViewTouch) itemView.findViewById(R.id.galleryImage);
         caption.setText(commentsList.get(position).getBody());
-        new DownloadImagesTask(itemView, image).execute(urls[position]);
+
+        /*
+        This determines if the code needs to add an image extenstion to the link!
+         */
+        if (!urls[position].substring(urls[position].lastIndexOf("/"), urls[position].length()).contains(".")) {
+            urls[position] = urls[position] + ".png";
+        }
+
+        // TODO mess more with ion and animations
+        Ion.with(mContext)
+                .load(urls[position])
+                .withBitmap()
+                .placeholder(R.drawable.fab_background)
+                .animateIn(Animation.ZORDER_NORMAL)
+                .intoImageView(image);
+//        new DownloadImagesTask(itemView, image, mContext).execute(urls[position]);
 //        Glide.with(mContext).load(urls[position])
 //                .override(com.bumptech.glide.request.target.Target.SIZE_ORIGINAL, com.bumptech.glide.request.target.Target.SIZE_ORIGINAL)
 //                .centerCrop()
