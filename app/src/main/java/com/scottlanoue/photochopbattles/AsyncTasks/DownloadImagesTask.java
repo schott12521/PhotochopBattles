@@ -10,12 +10,14 @@ import com.scottlanoue.photochopbattles.R;
 
 import java.io.InputStream;
 
+import it.sephiroth.android.library.imagezoom.ImageViewTouch;
+
 public class DownloadImagesTask extends AsyncTask<String, Void, Bitmap> {
 
-    ImageView bitmapImage;
+    ImageViewTouch bitmapImage;
     View view;
 
-    public DownloadImagesTask(View viewIn, ImageView image) {
+    public DownloadImagesTask(View viewIn, ImageViewTouch image) {
         bitmapImage = image;
         view = viewIn;
     }

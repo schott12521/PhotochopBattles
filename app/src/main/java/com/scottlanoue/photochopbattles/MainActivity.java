@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipe;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerAdapter;
+    private GridLayoutManager gridLayoutManager;
 
     /**
      * These objects are used for scroll detection
@@ -55,7 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerLayout);
         recyclerAdapter = new RecyclerViewAdapter();
-        final GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        Log.v("Size: ", getResources().getDisplayMetrics() + "");
+        if (getResources().getDisplayMetrics().densityDpi == 320) {
+            gridLayoutManager = new GridLayoutManager(this, 3);
+        } else {
+            gridLayoutManager = new GridLayoutManager(this, 2);
+        }
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(recyclerAdapter);
 

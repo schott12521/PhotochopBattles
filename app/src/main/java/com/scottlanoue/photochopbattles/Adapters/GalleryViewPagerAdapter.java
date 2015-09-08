@@ -25,6 +25,8 @@ import org.w3c.dom.Text;
 import java.lang.annotation.Target;
 import java.util.List;
 
+import it.sephiroth.android.library.imagezoom.ImageViewTouch;
+
 public class GalleryViewPagerAdapter extends PagerAdapter {
 
     private int size;
@@ -56,17 +58,17 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
 //        View itemView = LayoutInflater.from(container.getContext()).inflate(R.layout.gallery_item, container, false);
 
         // TODO get this layout to inflate
-        ImageView image = (ImageView) itemView.findViewById(R.id.galleryImage);
+//        ImageView image = (ImageView) itemView.findViewById(R.id.galleryImage);
         TextView caption = (TextView) itemView.findViewById(R.id.galleryCaption);
-
+        ImageViewTouch image = (ImageViewTouch) itemView.findViewById(R.id.galleryImage);
         caption.setText(commentsList.get(position).getBody());
-//        new DownloadImagesTask(itemView, image).execute(urls[position]);
-        Glide.with(mContext).load(urls[position])
-                .override(com.bumptech.glide.request.target.Target.SIZE_ORIGINAL, com.bumptech.glide.request.target.Target.SIZE_ORIGINAL)
-                .centerCrop()
-                .fitCenter()
-                .crossFade()
-                .into(image);
+        new DownloadImagesTask(itemView, image).execute(urls[position]);
+//        Glide.with(mContext).load(urls[position])
+//                .override(com.bumptech.glide.request.target.Target.SIZE_ORIGINAL, com.bumptech.glide.request.target.Target.SIZE_ORIGINAL)
+//                .centerCrop()
+//                .fitCenter()
+//                .crossFade()
+//                .into(image);
 //        image.setAdjustViewBounds(true);
         itemView.findViewById(R.id.progressBar).setVisibility(View.GONE);
 
