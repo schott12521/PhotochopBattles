@@ -1,6 +1,7 @@
 package com.scottlanoue.photochopbattles.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
@@ -16,7 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.builder.AnimateGifMode;
 import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
 import com.scottlanoue.photochopbattles.MainActivity;
 import com.scottlanoue.photochopbattles.R;
@@ -60,7 +63,7 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
 
         // TODO get this layout to inflate
         TextView caption = (TextView) itemView.findViewById(R.id.galleryCaption);
-        ImageViewTouch image = (ImageViewTouch) itemView.findViewById(R.id.galleryImage);
+        final ImageViewTouch image = (ImageViewTouch) itemView.findViewById(R.id.galleryImage);
         caption.setText(commentsList.get(position).getBody());
 
         /*
@@ -74,15 +77,21 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
         Ion.with(mContext)
                 .load(urls[position])
                 .withBitmap()
-                .placeholder(R.drawable.fab_background)
-                .animateIn(Animation.ZORDER_NORMAL)
-                .intoImageView(image);
+                .animateGif(AnimateGifMode.ANIMATE)
+                .asBitmap()
+                .setCallback(new FutureCallback<Bitmap>() {
+                    @Override
+                    public void onCompleted(Exception e, Bitmap result) {
+                        image.setImageBitmap(result);
+                    }
+                });
+//        Ion.with(mContext)
+//                .load(urls[position])
+//                .withBitmap()
+//                .placeholder(R.drawable.fab_background)
+//                .animateIn(Animation.ZORDER_NORMAL)
+//                .intoImageView(image);
 //        new DownloadImagesTask(itemView, image, mContext).execute(urls[position]);
-//        Glide.with(mContext).load(urls[position])
-//                .override(com.bumptech.glide.request.target.Target.SIZE_ORIGINAL, com.bumptech.glide.request.target.Target.SIZE_ORIGINAL)
-//                .centerCrop()
-//                .fitCenter()
-//                .crossFade()
 //                .into(image);
 //        image.setAdjustViewBounds(true);
         itemView.findViewById(R.id.progressBar).setVisibility(View.GONE);

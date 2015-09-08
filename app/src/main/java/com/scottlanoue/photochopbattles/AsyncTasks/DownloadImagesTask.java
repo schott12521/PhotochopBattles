@@ -4,8 +4,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.ImageView;
+
+import com.koushikdutta.ion.Ion;
 import com.scottlanoue.photochopbattles.R;
 
 import java.io.InputStream;
@@ -27,10 +31,14 @@ public class DownloadImagesTask extends AsyncTask<String, Void, Bitmap> {
     protected Bitmap doInBackground(String... urls) {
         String urlsToShow = urls[0];
         Bitmap bitImage = null;
-//        try {
+        try {
 //            InputStream in = new java.net.URL(urlsToShow).openStream();
 //            bitImage = BitmapFactory.decodeStream(in);
-//        } catch (Exception e) {}
+            bitImage = Ion.with(mContext)
+                    .load(urlsToShow)
+                    .asBitmap()
+                    .get();
+        } catch (Exception e) {}
         return bitImage;
     }
 
