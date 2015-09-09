@@ -24,6 +24,10 @@ public class Link implements Serializable {
         this.id = id;
     }
 
+    public void refactorTitle(String newTitle) {
+        title = newTitle;
+    }
+
     public String getTitle() {
         return title;
     }

@@ -1,19 +1,25 @@
 package com.scottlanoue.photochopbattles;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.scottlanoue.photochopbattles.Adapters.GalleryViewPagerAdapter;
 import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
 import com.scottlanoue.photochopbattles.RedditJson.Comment;
 import com.scottlanoue.photochopbattles.RedditJson.CommentFetcher;
 import com.scottlanoue.photochopbattles.RedditJson.Link;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,8 +37,11 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery_layout);
 
+        TextView threadName = (TextView) findViewById(R.id.galleryThreadName);
+
         Link passedLink = (Link) getIntent().getSerializableExtra("com.scottlanoue.photochopbattles.RedditJson.Link");
-        Log.d("this is the link", passedLink + " ");
+//        Log.d("this is the link", passedLink + " ");
+        threadName.setText(passedLink.getTitle());
 
 //        ImageView galleryImage = (ImageView) findViewById(R.id.galleryImage);
 //        Glide.with(getApplicationContext()).load(passedLink.getUrl()).placeholder(R.drawable.abc_spinner_mtrl_am_alpha).crossFade().into(galleryImage);

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
+import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.scottlanoue.photochopbattles.R;
 
@@ -37,6 +38,12 @@ public class DownloadImagesTask extends AsyncTask<String, Void, Bitmap> {
             bitImage = Ion.with(mContext)
                     .load(urlsToShow)
                     .asBitmap()
+//                    .setCallback(new FutureCallback<Bitmap>() {
+//                    @Override
+//                    public void onCompleted(Exception e, Bitmap result) {
+////                        image.setImageBitmap(result);
+//                    }
+//                })
                     .get();
         } catch (Exception e) {}
         return bitImage;

@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerLayout);
         recyclerAdapter = new RecyclerViewAdapter();
+        /*
+         TODO this will decide how many 'tiles' should be shown based on screen metrics
+         */
         Log.v("Size: ", getResources().getDisplayMetrics() + "");
         if (getResources().getDisplayMetrics().densityDpi == 320) {
             gridLayoutManager = new GridLayoutManager(this, 3);
@@ -97,7 +100,12 @@ public class MainActivity extends AppCompatActivity {
                     if ((visibleItemCount + pastVisiblesItems) >= totalItemCount - 3) {
                         notLoading = false;
                         if (recyclerAdapter.linksList.size() > 0) {
-                            new DownloadLinksTask(psbURL + "?limit" + totalItemCount + "&after=t3_" + recyclerAdapter.linksList
+                            /*
+                            TODO fix this from showing duplicates, consult help on Reddit
+                             */
+                            Log.v("plz ", psbURL + "&count" + (totalItemCount - 2) + "&after=t3_" + recyclerAdapter.linksList
+                                    .get(totalItemCount - 1).getId());
+                            new DownloadLinksTask(psbURL + "&count" + (totalItemCount - 2) + "&after=t3_" + recyclerAdapter.linksList
                                     .get(totalItemCount - 1).getId(), false).execute();
                         }
                     }
@@ -226,7 +234,17 @@ public class MainActivity extends AppCompatActivity {
         public void onBindViewHolder(final LinkViewHolder linkHolder, int i) {
             final Link link = linksList.get(i);
 
-            linkHolder.title.setText(link.getTitle());
+            /**
+             * This if statement gets rid of the PsBattle before a post
+             */
+            if (link.getTitle().startsWith("PsBattle: ") || link.getTitle().startsWith("PSBattle: ")) {
+//                link.refactorTitle(link.getTitle().substring(link.getTitle().indexOf(": ") + 2));
+                linkHolder.title.setText(link.getTitle().substring(link.getTitle().indexOf(": ") + 2));
+            } else {
+                linkHolder.title.setText(link.getTitle());
+            }
+
+            linkHolder.additionalInfo.setText(link.getScore() + "");
 
             /*
             If the link is a selfpost, we don't have a picture to load!
@@ -242,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
                         .centerCrop()
                         .fitCenter()
                         .crossFade()
+                        .thumbnail(0.2f)
                         .into(linkHolder.photo);
                 /*
                 This code generates the title's background color using Palette and Glide but is acting very wonky...
@@ -304,13 +323,14 @@ public class MainActivity extends AppCompatActivity {
 
         public class LinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             TextView title;
-//            TextView score;
+            TextView additionalInfo;
             ImageView photo;
 
             LinkViewHolder(View itemView) {
                 super(itemView);
                 itemView.setOnClickListener(this);
                 photo = (ImageView) itemView.findViewById(R.id.photo);
+                additionalInfo = (TextView) itemView.findViewById(R.id.additionalInfo);
                 title = (TextView) itemView.findViewById(R.id.title);
             }
 

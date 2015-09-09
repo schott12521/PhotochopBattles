@@ -13,21 +13,37 @@
         android:layout_height="200dp"
         android:scaleType="centerCrop"/>
 
+    <!-- TODO fix the thumbails text-->
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="68dp"
         android:singleLine="true"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         android:typeface="sans"
-        android:background="#64000000"
+        android:background="#80000000"
         android:layout_gravity="left|bottom"
         android:gravity="bottom"
         android:text="Test text"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="16dp" />
+        android:paddingRight="8dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="30dp"
+        android:fontFamily="sans-serif-condensed"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/additionalInfo"
+        android:text="hmmm"
+        android:layout_gravity="left|bottom"
+        android:paddingLeft="16dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="16dp"
+        android:paddingTop="36dp"
+        android:textColor="@android:color/white"/>
 
     <!--<TextView-->
     <!--android:id="@+id/score"-->

@@ -22,6 +22,7 @@ import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.builder.AnimateGifMode;
 import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
 import com.scottlanoue.photochopbattles.MainActivity;
+import com.scottlanoue.photochopbattles.MyImageViewTouch;
 import com.scottlanoue.photochopbattles.R;
 import com.scottlanoue.photochopbattles.RedditJson.Comment;
 
@@ -68,31 +69,37 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
 
         /*
         This determines if the code needs to add an image extenstion to the link!
+
+        NOTE: the first check makes sure that the program is not trying to add an image extension to a comment with an "Error 001"
          */
-        if (!urls[position].substring(urls[position].lastIndexOf("/"), urls[position].length()).contains(".")) {
+        if (!urls[position].contains("Error 001") &&!urls[position].substring(urls[position].lastIndexOf("/"), urls[position].length()).contains(".")) {
             urls[position] = urls[position] + ".png";
         }
 
         // TODO mess more with ion and animations
-        Ion.with(mContext)
-                .load(urls[position])
-                .withBitmap()
-                .animateGif(AnimateGifMode.ANIMATE)
-                .asBitmap()
-                .setCallback(new FutureCallback<Bitmap>() {
-                    @Override
-                    public void onCompleted(Exception e, Bitmap result) {
-                        image.setImageBitmap(result);
-                    }
-                });
+        new DownloadImagesTask(itemView, image, mContext).execute(urls[position]);
+//        Ion.with(mContext)
+//                .load(urls[position])
+//                .withBitmap()
+//                .animateGif(AnimateGifMode.ANIMATE)
+//                .asBitmap()
+//                .setCallback(new FutureCallback<Bitmap>() {
+//                    @Override
+//                    public void onCompleted(Exception e, Bitmap result) {
+//                        image.setImageBitmap(result);
+//                    }
+//                });
 //        Ion.with(mContext)
 //                .load(urls[position])
 //                .withBitmap()
 //                .placeholder(R.drawable.fab_background)
 //                .animateIn(Animation.ZORDER_NORMAL)
 //                .intoImageView(image);
-//        new DownloadImagesTask(itemView, image, mContext).execute(urls[position]);
 //                .into(image);
+
+        /**
+         * If I allow the image to adjust the view bounds, the image is no longer scrollable...
+         */
 //        image.setAdjustViewBounds(true);
         itemView.findViewById(R.id.progressBar).setVisibility(View.GONE);
 

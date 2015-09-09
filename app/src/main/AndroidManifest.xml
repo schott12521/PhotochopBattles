@@ -23,7 +23,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_gallery"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/Theme.AppCompat.Translucent" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.scottlanoue.photochopbattles.MainActivity" />
