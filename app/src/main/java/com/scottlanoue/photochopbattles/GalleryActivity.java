@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.scottlanoue.photochopbattles.Adapters.GalleryViewPagerAdapter;
+import com.scottlanoue.photochopbattles.Adapters.ImageViewTouchPager;
 import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
 import com.scottlanoue.photochopbattles.RedditJson.Comment;
 import com.scottlanoue.photochopbattles.RedditJson.CommentFetcher;
@@ -30,7 +31,8 @@ import java.util.List;
 public class GalleryActivity extends AppCompatActivity {
 
     private GalleryViewPagerAdapter mAdapter;
-    private ViewPager mPager;
+//    private ViewPager mPager;
+    private ImageViewTouchPager mPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +72,9 @@ public class GalleryActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            // TODO: If Settings has multiple levels, Up should navigate up
             // that hierarchy.
-            NavUtils.navigateUpFromSameTask(this);
+//            NavUtils.navigateUpFromSameTask(this);
+            this.finish();
             return true;
         }
 
@@ -89,7 +91,8 @@ public class GalleryActivity extends AppCompatActivity {
         List<Comment> comments = fetch.readJsonStream((InputStream) request.getContent());
 
         mAdapter = new GalleryViewPagerAdapter(comments.size() - 1, getURLSfromCommments(comments), this.getApplicationContext(), comments);
-        mPager = (ViewPager) findViewById(R.id.viewPager);
+//        mPager = (ViewPager) findViewById(R.id.viewPager);
+        mPager = (ImageViewTouchPager) findViewById(R.id.viewPager);
         mPager.setAdapter(mAdapter);
     }
 

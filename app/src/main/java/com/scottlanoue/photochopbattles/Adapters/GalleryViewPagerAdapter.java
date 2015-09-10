@@ -112,4 +112,11 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
         ((ViewPager) container).removeView((RelativeLayout) object);
     }
 
+    /**
+     * I dont think this is needed...
+     */
+//    @Override
+//    public void onPageSelected(int position) {
+//        Log.v("hmmm ", "ok");
+//    }
 }

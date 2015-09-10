@@ -27,24 +27,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b23b7f0-6d05-40c0-9109-0d9350128ca9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/MyImageViewTouch.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/Adapters/ImageViewTouchPager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/AsyncTasks/DownloadImagesTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/AsyncTasks/DownloadImagesTask.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/GalleryActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/GalleryActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/Adapters/GalleryViewPagerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/Adapters/GalleryViewPagerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/RedditJson/Link.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/RedditJson/Link.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/gallery_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/gallery_layout.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/photo_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/photo_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-v11/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-v11/styles.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Photochop Battles.iws" />
@@ -75,29 +68,23 @@
     <leaf>
       <file leaf-file-name="gallery_layout.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/gallery_layout.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.0">
+              <caret line="14" column="66" selection-start-line="14" selection-start-column="66" selection-end-line="14" selection-end-column="66" />
               <folding />
             </state>
           </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58198196">
+            <state vertical-scroll-proportion="0.0">
               <caret line="103" column="89" selection-start-line="103" selection-start-column="89" selection-end-line="103" selection-end-column="89" />
               <folding>
-                <element signature="e#2641#2986#0" expanded="true" />
-                <element signature="e#2985#2986#0" expanded="true" />
-                <element signature="e#3031#4349#0" expanded="true" />
-                <element signature="e#4348#4349#0" expanded="true" />
-                <element signature="e#11361#11362#0" expanded="true" />
-                <element signature="e#11408#11409#0" expanded="true" />
                 <element signature="class#LinkViewHolder#0;class#RecyclerViewAdapter#0;class#MainActivity#0" expanded="false" />
               </folding>
             </state>
@@ -106,23 +93,41 @@
       </file>
       <file leaf-file-name="gallery_item.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/gallery_item.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.5">
               <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
               <folding />
             </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="GalleryViewPagerAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/Adapters/GalleryViewPagerAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.0">
+              <caret line="35" column="59" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1657#1658#0" expanded="true" />
+                <element signature="e#1684#1685#0" expanded="true" />
+                <element signature="e#1763#1764#0" expanded="true" />
+                <element signature="e#1800#1801#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageViewTouchPager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/Adapters/ImageViewTouchPager.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="72" column="130" selection-start-line="72" selection-start-column="130" selection-end-line="72" selection-end-column="130" />
-              <folding />
+              <caret line="37" column="89" selection-start-line="37" selection-start-column="89" selection-end-line="37" selection-end-column="89" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -133,8 +138,16 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
               <folding>
-                <element signature="e#650#651#0" expanded="true" />
-                <element signature="e#682#683#0" expanded="true" />
+                <element signature="e#714#715#0" expanded="false" />
+                <element signature="e#742#743#0" expanded="false" />
+                <element signature="e#772#773#0" expanded="false" />
+                <element signature="e#798#799#0" expanded="false" />
+                <element signature="e#834#835#0" expanded="false" />
+                <element signature="e#866#867#0" expanded="false" />
+                <element signature="e#895#896#0" expanded="false" />
+                <element signature="e#923#924#0" expanded="false" />
+                <element signature="e#1047#1048#0" expanded="false" />
+                <element signature="e#1119#1120#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -147,8 +160,6 @@
               <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#637#1031#0" expanded="true" />
-                <element signature="e#1030#1031#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -166,11 +177,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GalleryActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GalleryActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/GalleryActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="50" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.64107484">
+              <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -1714,10 +1725,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/gallery_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/MyImageViewTouch.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/AsyncTasks/DownloadImagesTask.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/GalleryActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/gallery_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/Adapters/GalleryViewPagerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/Adapters/ImageViewTouchPager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/GalleryActivity.java" />
       </list>
     </option>
   </component>
@@ -1761,6 +1773,8 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1959,9 +1973,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1986,6 +1998,8 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHub/PortableGit_c2ba306e536fdf878271f7fe636a147ff37326ad/bin/git.exe" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -2277,7 +2291,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441690274932</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Transparent gallery, bug fixes">
+      <created>1441773789778</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1441773789778</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2294,7 +2314,7 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.4955947" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31126598" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31113663" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32868758" sideWeight="0.5154185" order="7" side_tool="true" content_ui="tabs" />
@@ -2312,7 +2332,7 @@
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39953542" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39839265" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2374,7 +2394,8 @@
     <MESSAGE value="Use ImageViewTouch to allow pinch to zoom!" />
     <MESSAGE value="Use ION for more image handling!" />
     <MESSAGE value="Fix more ION" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix more ION" />
+    <MESSAGE value="Transparent gallery, bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Transparent gallery, bug fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2383,17 +2404,40 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/photo_item.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="37" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/RedditJson/Link.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2641#2986#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3031#4349#0" expanded="true" />
-            <element signature="e#4348#4349#0" expanded="true" />
-            <element signature="e#11361#11362#0" expanded="true" />
-            <element signature="e#11408#11409#0" expanded="true" />
             <element signature="class#LinkViewHolder#0;class#RecyclerViewAdapter#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -2433,57 +2477,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2641#2986#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3031#4349#0" expanded="true" />
-            <element signature="e#4348#4349#0" expanded="true" />
-            <element signature="e#11361#11362#0" expanded="true" />
-            <element signature="e#11408#11409#0" expanded="true" />
-            <element signature="class#LinkViewHolder#0;class#RecyclerViewAdapter#0;class#MainActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/photo_item.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="37" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/RedditJson/Link.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#2641#2986#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3031#4349#0" expanded="true" />
-            <element signature="e#4348#4349#0" expanded="true" />
-            <element signature="e#11361#11362#0" expanded="true" />
-            <element signature="e#11408#11409#0" expanded="true" />
             <element signature="class#LinkViewHolder#0;class#RecyclerViewAdapter#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -2523,12 +2516,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2641#2986#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3031#4349#0" expanded="true" />
-            <element signature="e#4348#4349#0" expanded="true" />
-            <element signature="e#11361#11362#0" expanded="true" />
-            <element signature="e#11408#11409#0" expanded="true" />
             <element signature="class#LinkViewHolder#0;class#RecyclerViewAdapter#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -2557,12 +2544,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="138" column="88" selection-start-line="138" selection-start-column="88" selection-end-line="138" selection-end-column="88" />
           <folding>
-            <element signature="e#2641#2986#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3031#4349#0" expanded="true" />
-            <element signature="e#4348#4349#0" expanded="true" />
-            <element signature="e#11361#11362#0" expanded="true" />
-            <element signature="e#11408#11409#0" expanded="true" />
             <element signature="class#LinkViewHolder#0;class#RecyclerViewAdapter#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -2599,12 +2580,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2641#2986#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3031#4349#0" expanded="true" />
-            <element signature="e#4348#4349#0" expanded="true" />
-            <element signature="e#11361#11362#0" expanded="true" />
-            <element signature="e#11408#11409#0" expanded="true" />
             <element signature="class#LinkViewHolder#0;class#RecyclerViewAdapter#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -2641,12 +2616,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
           <folding>
-            <element signature="e#2641#2986#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3031#4349#0" expanded="true" />
-            <element signature="e#4348#4349#0" expanded="true" />
-            <element signature="e#11361#11362#0" expanded="true" />
-            <element signature="e#11408#11409#0" expanded="true" />
             <element signature="class#LinkViewHolder#0;class#RecyclerViewAdapter#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
@@ -2796,36 +2765,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/gallery_item.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/GalleryActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="50" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/gallery_layout.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/RedditJson/Comment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.030630631">
@@ -2839,8 +2778,16 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
           <folding>
-            <element signature="e#650#651#0" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
+            <element signature="e#714#715#0" expanded="false" />
+            <element signature="e#742#743#0" expanded="false" />
+            <element signature="e#772#773#0" expanded="false" />
+            <element signature="e#798#799#0" expanded="false" />
+            <element signature="e#834#835#0" expanded="false" />
+            <element signature="e#866#867#0" expanded="false" />
+            <element signature="e#895#896#0" expanded="false" />
+            <element signature="e#923#924#0" expanded="false" />
+            <element signature="e#1047#1048#0" expanded="false" />
+            <element signature="e#1119#1120#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2861,33 +2808,71 @@
           <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#637#1031#0" expanded="true" />
-            <element signature="e#1030#1031#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/Adapters/GalleryViewPagerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="130" selection-start-line="72" selection-start-column="130" selection-end-line="72" selection-end-column="130" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58198196">
+        <state vertical-scroll-proportion="0.0">
           <caret line="103" column="89" selection-start-line="103" selection-start-column="89" selection-end-line="103" selection-end-column="89" />
           <folding>
-            <element signature="e#2641#2986#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3031#4349#0" expanded="true" />
-            <element signature="e#4348#4349#0" expanded="true" />
-            <element signature="e#11361#11362#0" expanded="true" />
-            <element signature="e#11408#11409#0" expanded="true" />
             <element signature="class#LinkViewHolder#0;class#RecyclerViewAdapter#0;class#MainActivity#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/gallery_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.5">
+          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/gallery_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0">
+          <caret line="14" column="66" selection-start-line="14" selection-start-column="66" selection-end-line="14" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/Adapters/GalleryViewPagerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0">
+          <caret line="35" column="59" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1657#1658#0" expanded="true" />
+            <element signature="e#1684#1685#0" expanded="true" />
+            <element signature="e#1763#1764#0" expanded="true" />
+            <element signature="e#1800#1801#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/Adapters/ImageViewTouchPager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="89" selection-start-line="37" selection-start-column="89" selection-end-line="37" selection-end-column="89" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/scottlanoue/photochopbattles/GalleryActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64107484">
+          <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
