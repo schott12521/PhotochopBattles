@@ -1,34 +1,20 @@
 package com.scottlanoue.photochopbattles.Adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.media.Image;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
-import com.koushikdutta.ion.builder.AnimateGifMode;
 import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
-import com.scottlanoue.photochopbattles.MainActivity;
-import com.scottlanoue.photochopbattles.MyImageViewTouch;
+import com.scottlanoue.photochopbattles.GalleryActivity;
 import com.scottlanoue.photochopbattles.R;
 import com.scottlanoue.photochopbattles.RedditJson.Comment;
 
-import org.w3c.dom.Text;
-
-import java.lang.annotation.Target;
 import java.util.List;
 
 import it.sephiroth.android.library.imagezoom.ImageViewTouch;
@@ -39,12 +25,14 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
     private String[] urls;
     private Context mContext;
     private List<Comment> commentsList;
+    private GalleryActivity galleryActivity;
 
-    public GalleryViewPagerAdapter(int numItems, String[] urls, Context contextIn, List<Comment> commentsList) {
+    public GalleryViewPagerAdapter(int numItems, String[] urls, Context contextIn, List<Comment> commentsList, GalleryActivity galleryActivity) {
         this.size = numItems;
         this.urls = urls;
         this.mContext = contextIn;
         this.commentsList = commentsList;
+        this.galleryActivity = galleryActivity;
     }
 
     @Override
@@ -102,6 +90,14 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
          */
 //        image.setAdjustViewBounds(true);
         itemView.findViewById(R.id.progressBar).setVisibility(View.GONE);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                galleryActivity.closeThisView();
+                Log.v("did we come here", "Hmmmm");
+            }
+        });
 
         ((ViewPager) container).addView(itemView);
         return itemView;

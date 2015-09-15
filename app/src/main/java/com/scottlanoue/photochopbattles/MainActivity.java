@@ -261,6 +261,7 @@ public class MainActivity extends AppCompatActivity {
                         .fitCenter()
                         .crossFade()
                         .thumbnail(0.2f)
+                        .dontAnimate()
                         .into(linkHolder.photo);
                 /*
                 This code generates the title's background color using Palette and Glide but is acting very wonky...

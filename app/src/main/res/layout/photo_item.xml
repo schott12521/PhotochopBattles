@@ -43,7 +43,8 @@
         android:paddingRight="8dp"
         android:paddingBottom="16dp"
         android:paddingTop="36dp"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:fontFamily="sans-serif-condensed"/>
 
     <!--<TextView-->
     <!--android:id="@+id/score"-->

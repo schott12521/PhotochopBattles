@@ -2,18 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\schot_000\.gradle\caches\modules-2\files-2.1\com.koushikdutta.async\androidasync\2.1.6\e3d5f6ab2003e31f2cf5ea61b4731a21e9517935\androidasync-2.1.6.jar"
+        jar="C:\Users\schot_000\.gradle\caches\modules-2\files-2.1\com.nostra13.universalimageloader\universal-image-loader\1.9.4\dd9eeb557650c4ad7394df23f0f5cf27a7cfc697\universal-image-loader-1.9.4.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="e3d5f6ab2003e31f2cf5ea61b4731a21e9517935">
-        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\androidasync-2.1.6-44de808a2c796ad2ce71ac66758196853ecf18ef.jar" />
-    </item>
-    <item
-        jar="C:\Users\schot_000\.gradle\caches\modules-2\files-2.1\com.koushikdutta.ion\ion\2.1.6\cd55ef3ba6d8b62838b658ba2507b019dffb3a08\ion-2.1.6.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="cd55ef3ba6d8b62838b658ba2507b019dffb3a08">
-        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\ion-2.1.6-c32c6661000941a17daedebaac5efd691f1959f6.jar" />
+        sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.4-fdb23e1bb5f3cb7e7730e7d1e7d4f15a874faddd.jar" />
     </item>
 
 </items>

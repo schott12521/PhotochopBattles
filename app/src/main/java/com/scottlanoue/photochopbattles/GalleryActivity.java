@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -54,6 +55,14 @@ public class GalleryActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.v("did we come here", passedLink.getPermaLink() + ".json");
         }
+
+        mPager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeThisView();
+                Log.v("did we come here", "Hmmmm");
+            }
+        });
     }
 
     @Override
@@ -90,7 +99,7 @@ public class GalleryActivity extends AppCompatActivity {
         request.connect();
         List<Comment> comments = fetch.readJsonStream((InputStream) request.getContent());
 
-        mAdapter = new GalleryViewPagerAdapter(comments.size() - 1, getURLSfromCommments(comments), this.getApplicationContext(), comments);
+        mAdapter = new GalleryViewPagerAdapter(comments.size() - 1, getURLSfromCommments(comments), this.getApplicationContext(), comments, this);
 //        mPager = (ViewPager) findViewById(R.id.viewPager);
         mPager = (ImageViewTouchPager) findViewById(R.id.viewPager);
         mPager.setAdapter(mAdapter);
@@ -104,5 +113,9 @@ public class GalleryActivity extends AppCompatActivity {
         }
         return  returnArray;
 
+    }
+
+    public void closeThisView() {
+        this.finish();
     }
 }

@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:background="#96000000"
     tools:context="com.scottlanoue.photochopbattles.GalleryActivity"
-    style="@style/Theme.AppCompat.Translucent">
+    style="@style/Theme.AppCompat.Translucent"
+    android:id="@+id/galleryFrameLayout">
 
     <TextView
         android:layout_width="fill_parent"

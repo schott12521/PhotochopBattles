@@ -51,4 +51,8 @@ public class Link implements Serializable {
     public String toString() {
         return title + " " + url + " " + permaLink + " " + score;
     }
+
+    public int hashCode() {
+        return this.getId().hashCode();
+    }
 }
