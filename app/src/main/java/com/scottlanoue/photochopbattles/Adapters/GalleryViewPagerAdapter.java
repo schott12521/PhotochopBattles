@@ -1,6 +1,7 @@
 package com.scottlanoue.photochopbattles.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
 import com.scottlanoue.photochopbattles.GalleryActivity;
 import com.scottlanoue.photochopbattles.R;
@@ -18,6 +21,7 @@ import com.scottlanoue.photochopbattles.RedditJson.Comment;
 import java.util.List;
 
 import it.sephiroth.android.library.imagezoom.ImageViewTouch;
+import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 
 public class GalleryViewPagerAdapter extends PagerAdapter {
 
@@ -60,38 +64,38 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
 
         NOTE: the first check makes sure that the program is not trying to add an image extension to a comment with an "Error 001"
          */
-        if (!urls[position].contains("Error 001") &&!urls[position].substring(urls[position].lastIndexOf("/"), urls[position].length()).contains(".")) {
+        if (!urls[position].contains("Error 001") && !urls[position].substring(urls[position].lastIndexOf("/"), urls[position].length()).contains(".")) {
             urls[position] = urls[position] + ".png";
         }
 
         // TODO mess more with ion and animations
-        new DownloadImagesTask(itemView, image, mContext).execute(urls[position]);
-//        Ion.with(mContext)
-//                .load(urls[position])
-//                .withBitmap()
+//        new DownloadImagesTask(itemView, image, mContext).execute(urls[position]);
+        Ion.with(mContext)
+                .load(urls[position])
+                .withBitmap()
 //                .animateGif(AnimateGifMode.ANIMATE)
-//                .asBitmap()
-//                .setCallback(new FutureCallback<Bitmap>() {
-//                    @Override
-//                    public void onCompleted(Exception e, Bitmap result) {
-//                        image.setImageBitmap(result);
-//                    }
-//                });
-//        Ion.with(mContext)
-//                .load(urls[position])
-//                .withBitmap()
-//                .placeholder(R.drawable.fab_background)
-//                .animateIn(Animation.ZORDER_NORMAL)
-//                .intoImageView(image);
-//                .into(image);
+                .asBitmap()
+                .setCallback(new FutureCallback<Bitmap>() {
+                    @Override
+                    public void onCompleted(Exception e, Bitmap result) {
+                        image.setImageBitmap(result);
+                    }
+                });
 
+        image.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
         /**
-         * If I allow the image to adjust the view bounds, the image is no longer scrollable...
+         * This allows me to click on the image to kill the gallery activity and return to the main list!
          */
-//        image.setAdjustViewBounds(true);
+        image.setSingleTapListener(new ImageViewTouch.OnImageViewTouchSingleTapListener() {
+            @Override
+            public void onSingleTapConfirmed() {
+                galleryActivity.closeThisView();
+                Log.v("did we come here", "Hmmmm");
+            }
+        });
         itemView.findViewById(R.id.progressBar).setVisibility(View.GONE);
 
-        itemView.setOnClickListener(new View.OnClickListener() {
+        image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 galleryActivity.closeThisView();

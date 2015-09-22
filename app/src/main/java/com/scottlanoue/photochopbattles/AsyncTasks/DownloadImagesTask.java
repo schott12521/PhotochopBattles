@@ -23,9 +23,9 @@ public class DownloadImagesTask extends AsyncTask<String, Void, Bitmap> {
     View view;
     Context mContext;
 
-    public DownloadImagesTask(View viewIn, ImageViewTouch image, Context contextIn) {
-        bitmapImage = image;
-        view = viewIn;
+    public DownloadImagesTask(Context contextIn) {
+//        bitmapImage = image;
+//        view = viewIn;
         mContext = contextIn;
     }
 

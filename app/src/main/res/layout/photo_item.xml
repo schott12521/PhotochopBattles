@@ -47,21 +47,16 @@
         android:fontFamily="sans-serif-condensed"/>
 
     <!--<TextView-->
-    <!--android:id="@+id/score"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@+id/title"-->
-    <!--android:layout_toRightOf="@+id/photo"-->
-    <!--android:textSize="12sp"/>-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/permaLink"-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@+id/score"-->
-    <!--android:layout_toEndOf="@+id/photo"-->
-    <!--android:textSize="12sp"-->
-    <!--android:singleLine="true" />-->
-    <!--</RelativeLayout>-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/numPictures"-->
+        <!--android:text="hmmm"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:paddingLeft="150dp"-->
+        <!--android:paddingRight="8dp"-->
+        <!--android:paddingBottom="16dp"-->
+        <!--android:paddingTop="36dp"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:fontFamily="sans-serif-condensed"/>-->
 
 </FrameLayout>

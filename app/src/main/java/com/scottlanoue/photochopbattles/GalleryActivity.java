@@ -40,11 +40,11 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery_layout);
 
-        TextView threadName = (TextView) findViewById(R.id.galleryThreadName);
 
         Link passedLink = (Link) getIntent().getSerializableExtra("com.scottlanoue.photochopbattles.RedditJson.Link");
 //        Log.d("this is the link", passedLink + " ");
-        threadName.setText(passedLink.getTitle());
+
+        this.getSupportActionBar().setTitle(passedLink.getTitle());
 
 //        ImageView galleryImage = (ImageView) findViewById(R.id.galleryImage);
 //        Glide.with(getApplicationContext()).load(passedLink.getUrl()).placeholder(R.drawable.abc_spinner_mtrl_am_alpha).crossFade().into(galleryImage);

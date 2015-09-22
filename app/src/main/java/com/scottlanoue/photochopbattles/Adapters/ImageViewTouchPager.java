@@ -37,24 +37,24 @@ public class ImageViewTouchPager extends ViewPager {
     /**
      * This is the method that actually determines whether or not to scroll the viewPager
      */
-    @Override
-    protected boolean canScroll(View v, boolean checkV, int dx, int x, int y) {
-        if (v instanceof ImageViewTouch) {
-            if (((ImageViewTouch) v).getScale() == ((ImageViewTouch) v).getMinScale()) {
-                return super.canScroll(v, checkV, dx, x, y);
-            }
-            return ((ImageViewTouch) v).canScroll(dx);
-        } else {
-            return super.canScroll(v, checkV, dx, x, y);
-        }
-    }
+//    @Override
 //    protected boolean canScroll(View v, boolean checkV, int dx, int x, int y) {
 //        if (v instanceof ImageViewTouch) {
+//            if (((ImageViewTouch) v).getScale() == ((ImageViewTouch) v).getMinScale()) {
+//                return super.canScroll(v, checkV, dx, x, y);
+//            }
 //            return ((ImageViewTouch) v).canScroll(dx);
 //        } else {
 //            return super.canScroll(v, checkV, dx, x, y);
 //        }
 //    }
+    protected boolean canScroll(View v, boolean checkV, int dx, int x, int y) {
+        if (v instanceof ImageViewTouch) {
+            return ((ImageViewTouch) v).canScroll(dx);
+        } else {
+            return super.canScroll(v, checkV, dx, x, y);
+        }
+    }
 
     public interface OnPageSelectedListener {
 

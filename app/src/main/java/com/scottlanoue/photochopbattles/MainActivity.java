@@ -245,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             linkHolder.additionalInfo.setText(link.getScore() + "");
+//            linkHolder.numPictures.setText(link.getNumComments()); This line would display the num of comments, but I have to rethink this
 
             /*
             If the link is a selfpost, we don't have a picture to load!
@@ -325,6 +326,7 @@ public class MainActivity extends AppCompatActivity {
         public class LinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             TextView title;
             TextView additionalInfo;
+//            TextView numPictures;
             ImageView photo;
 
             LinkViewHolder(View itemView) {
@@ -333,6 +335,7 @@ public class MainActivity extends AppCompatActivity {
                 photo = (ImageView) itemView.findViewById(R.id.photo);
                 additionalInfo = (TextView) itemView.findViewById(R.id.additionalInfo);
                 title = (TextView) itemView.findViewById(R.id.title);
+//                numPictures = (TextView) itemView.findViewById(R.id.numPictures);
             }
 
             @Override

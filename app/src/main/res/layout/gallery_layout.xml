@@ -7,12 +7,6 @@
     style="@style/Theme.AppCompat.Translucent"
     android:id="@+id/galleryFrameLayout">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/galleryThreadName"
-        android:gravity="center"/>
-
     <com.scottlanoue.photochopbattles.Adapters.ImageViewTouchPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
