@@ -4,7 +4,7 @@ Android app focusing on creating and implementing a fun and easy way to browse R
 
 TODO:
 - [ ] refactor and cleanup code
-- [ ] documentation
+- [x] documentation
 - [x] grab JSON from permalink and create array of images from thread
  - [x] Load all images into ViewPager now from CommentFetcher
 - [ ] finish the Gallery
@@ -15,3 +15,5 @@ TODO:
  - [ ] Fix bug with RecyclerView recycling the wrong content
 - [x] Add endless reading support 
 - [x] Make Refreshing the page actually relaod the content
+- [x] Tap to dismiss image
+- [ ] Colors and animations
