@@ -1,27 +1,16 @@
 package com.scottlanoue.photochopbattles;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.scottlanoue.photochopbattles.Adapters.GalleryViewPagerAdapter;
-import com.scottlanoue.photochopbattles.Adapters.ImageViewTouchPager;
-import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
 import com.scottlanoue.photochopbattles.RedditJson.Comment;
 import com.scottlanoue.photochopbattles.RedditJson.CommentFetcher;
 import com.scottlanoue.photochopbattles.RedditJson.Link;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,7 +22,7 @@ public class GalleryActivity extends AppCompatActivity {
 
     private GalleryViewPagerAdapter mAdapter;
 //    private ViewPager mPager;
-    private ImageViewTouchPager mPager;
+    private ViewPager mPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +89,8 @@ public class GalleryActivity extends AppCompatActivity {
         List<Comment> comments = fetch.readJsonStream((InputStream) request.getContent());
 
         mAdapter = new GalleryViewPagerAdapter(comments.size() - 1, getURLSfromCommments(comments), this.getApplicationContext(), comments, this);
-//        mPager = (ViewPager) findViewById(R.id.viewPager);
-        mPager = (ImageViewTouchPager) findViewById(R.id.viewPager);
+//        mPager = (ViewPager) findViewById(R.id.galleryFrameLayout);
+        mPager = (ViewPager) findViewById(R.id.viewPager);
         mPager.setAdapter(mAdapter);
     }
 

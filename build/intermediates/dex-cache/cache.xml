@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\schot_000\.gradle\caches\modules-2\files-2.1\com.nostra13.universalimageloader\universal-image-loader\1.9.4\dd9eeb557650c4ad7394df23f0f5cf27a7cfc697\universal-image-loader-1.9.4.jar"
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.davemorrissey.labs\subsampling-scale-image-view\3.2.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
-        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.4-fdb23e1bb5f3cb7e7730e7d1e7d4f15a874faddd.jar" />
+        sha1="3d7c0b04b923dbcb3181aaddb6f0e3a6d28f785e">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-143e685103b51bf62408e8401c3bf64ae042eae5.jar" />
     </item>
 
 </items>

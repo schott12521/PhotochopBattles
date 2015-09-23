@@ -4,7 +4,15 @@
                 android:layout_height="match_parent"
     >
 
-    <it.sephiroth.android.library.imagezoom.ImageViewTouch
+    <!--<it.sephiroth.android.library.imagezoom.ImageViewTouch-->
+        <!--android:id="@+id/galleryImage"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_weight="1"-->
+        <!--android:scaleType="centerCrop" />-->
+
+    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
         android:id="@+id/galleryImage"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

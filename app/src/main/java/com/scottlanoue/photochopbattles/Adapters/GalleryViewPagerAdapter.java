@@ -6,11 +6,14 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
@@ -20,9 +23,6 @@ import com.scottlanoue.photochopbattles.RedditJson.Comment;
 
 import java.util.List;
 
-import it.sephiroth.android.library.imagezoom.ImageViewTouch;
-import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
-
 public class GalleryViewPagerAdapter extends PagerAdapter {
 
     private int size;
@@ -30,6 +30,10 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
     private Context mContext;
     private List<Comment> commentsList;
     private GalleryActivity galleryActivity;
+
+    public GalleryViewPagerAdapter() {
+
+    }
 
     public GalleryViewPagerAdapter(int numItems, String[] urls, Context contextIn, List<Comment> commentsList, GalleryActivity galleryActivity) {
         this.size = numItems;
@@ -56,7 +60,7 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
 
         // TODO get this layout to inflate
         TextView caption = (TextView) itemView.findViewById(R.id.galleryCaption);
-        final ImageViewTouch image = (ImageViewTouch) itemView.findViewById(R.id.galleryImage);
+        final SubsamplingScaleImageView image = (SubsamplingScaleImageView) itemView.findViewById(R.id.galleryImage);
         caption.setText(commentsList.get(position).getBody());
 
         /*
@@ -78,23 +82,16 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
                 .setCallback(new FutureCallback<Bitmap>() {
                     @Override
                     public void onCompleted(Exception e, Bitmap result) {
-                        image.setImageBitmap(result);
+                        image.setImage(ImageSource.bitmap(result));
                     }
                 });
 
-        image.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
+//        image.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
+        itemView.findViewById(R.id.progressBar).setVisibility(View.GONE);
+
         /**
          * This allows me to click on the image to kill the gallery activity and return to the main list!
          */
-        image.setSingleTapListener(new ImageViewTouch.OnImageViewTouchSingleTapListener() {
-            @Override
-            public void onSingleTapConfirmed() {
-                galleryActivity.closeThisView();
-                Log.v("did we come here", "Hmmmm");
-            }
-        });
-        itemView.findViewById(R.id.progressBar).setVisibility(View.GONE);
-
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -13,13 +13,9 @@ import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.scottlanoue.photochopbattles.R;
 
-import java.io.InputStream;
-
-import it.sephiroth.android.library.imagezoom.ImageViewTouch;
-
 public class DownloadImagesTask extends AsyncTask<String, Void, Bitmap> {
 
-    ImageViewTouch bitmapImage;
+    Bitmap bitmapImage;
     View view;
     Context mContext;
 
@@ -49,8 +45,9 @@ public class DownloadImagesTask extends AsyncTask<String, Void, Bitmap> {
         return bitImage;
     }
 
+    // TODO
     protected void onPostExecute(Bitmap result) {
-        bitmapImage.setImageBitmap(result);
+//        bitmapImage.setImageBitmap(result);
         view.findViewById(R.id.progressBar).setVisibility(View.GONE);
     }
 }
