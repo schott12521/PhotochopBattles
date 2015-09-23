@@ -82,7 +82,8 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
                 .setCallback(new FutureCallback<Bitmap>() {
                     @Override
                     public void onCompleted(Exception e, Bitmap result) {
-                        image.setImage(ImageSource.bitmap(result));
+                        if (result != null)
+                            image.setImage(ImageSource.bitmap(result));
                     }
                 });
 
