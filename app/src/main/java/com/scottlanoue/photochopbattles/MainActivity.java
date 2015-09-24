@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            int mLastVisibleItem = 0;
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -110,6 +112,20 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
+
+                /**
+                 * This is what should be handling the hiding of action bar.
+                 */
+//                if (!notLoading) {
+//                    final int currentFirstVisibleItem = gridLayoutManager.findFirstVisibleItemPosition();
+//                    if (currentFirstVisibleItem > mLastVisibleItem) {
+//                        MainActivity.this.getSupportActionBar().hide();
+//                    } else if (currentFirstVisibleItem < mLastVisibleItem) {
+//                        MainActivity.this.getActionBar().show();
+//                    }
+//
+//                    this.mLastVisibleItem = currentFirstVisibleItem;
+//                }
             }
 
         });

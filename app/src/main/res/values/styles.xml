@@ -1,9 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent = "Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-    </style>
+        <!--<style name="AppTheme" parent = "Theme.AppCompat.Light.DarkActionBar">-->
+            <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+            <!--<item name="colorPrimary">@color/primary500</item>-->
+            <!--<item name="colorPrimaryDark">@color/primary700</item>-->
+            <!--<item name="colorAccent">@color/accent</item>-->
+        <!--</style>-->
 
     <style name="Theme.AppCompat.Translucent">
         <item name="android:windowNoTitle">true</item>

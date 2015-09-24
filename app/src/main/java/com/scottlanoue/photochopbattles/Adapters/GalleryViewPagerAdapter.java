@@ -87,7 +87,6 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
                     }
                 });
 
-//        image.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
         itemView.findViewById(R.id.progressBar).setVisibility(View.GONE);
 
         /**
