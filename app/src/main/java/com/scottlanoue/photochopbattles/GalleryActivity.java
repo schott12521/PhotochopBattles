@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -59,9 +60,22 @@ public class GalleryActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.gallery_menu, menu);
+        return true;
+    }
+
+    /**
+     * For some reason, we are not matching up the correct item selected id's with the id's that we are looking for. hmmmmm.
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        Log.v("out: ", id + "  ");
+        Log.v("looking for ", android.R.id.home + " ");
         if (id == android.R.id.home) {
             // This ID represents the Home or Up button. In the case of this
             // activity, the Up button is shown. Use NavUtils to allow users
@@ -73,6 +87,7 @@ public class GalleryActivity extends AppCompatActivity {
             // that hierarchy.
 //            NavUtils.navigateUpFromSameTask(this);
             this.finish();
+            Log.v("this should do it", "this should do it");
             return true;
         }
 
