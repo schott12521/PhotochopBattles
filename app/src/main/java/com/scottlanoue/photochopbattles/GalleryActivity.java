@@ -75,9 +75,7 @@ public class GalleryActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        Log.v("out: ", id + "  ");
-        Log.v("looking for ", android.R.id.home + " ");
-        if (id == android.R.id.home) {
+        if (id == R.id.clickOut) {
             // This ID represents the Home or Up button. In the case of this
             // activity, the Up button is shown. Use NavUtils to allow users
             // to navigate up one level in the application structure. For
