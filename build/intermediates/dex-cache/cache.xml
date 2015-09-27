@@ -2,6 +2,20 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.sothree.slidinguppanel\library\3.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="76351d3022d4a2803789c01046aa0aa4b0d5d134">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-7c6713d1716e1552b7192da5cc67bcf045d2c6f3.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\library-2.4.0-2352ba9565bac18f06aff8a42be7933483e2eb17.jar" />
+    </item>
+    <item
         jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.davemorrissey.labs\subsampling-scale-image-view\3.2.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"

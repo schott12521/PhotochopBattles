@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-    >
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    android:id="@+id/sliding_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    sothree:umanoPanelHeight="68dp"
+    sothree:umanoShadowHeight="4dp">
 
-    <!--<it.sephiroth.android.library.imagezoom.ImageViewTouch-->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+        >
+
+        <!--<it.sephiroth.android.library.imagezoom.ImageViewTouch-->
         <!--android:id="@+id/galleryImage"-->
         <!--android:layout_width="fill_parent"-->
         <!--android:layout_height="fill_parent"-->
@@ -12,29 +22,45 @@
         <!--android:layout_weight="1"-->
         <!--android:scaleType="centerCrop" />-->
 
-    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
-        android:id="@+id/galleryImage"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:scaleType="centerCrop" />
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+            android:id="@+id/galleryImage"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"/>
 
-    <TextView
+        <TextView
+            android:id="@+id/galleryCaption"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:textAlignment="center"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:id="@+id/galleryCaption"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="80dp"
-        android:textAlignment="center"
-        android:gravity="center"/>
+        android:layout_height="match_parent"
+        android:background="#ffffff">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_centerInParent="true"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="This is the sliding Panel!"/>
 
-</RelativeLayout>
+    </FrameLayout>
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
