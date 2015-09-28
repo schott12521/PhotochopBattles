@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ProgressBar;
 
 import com.scottlanoue.photochopbattles.Adapters.GalleryViewPagerAdapter;
 import com.scottlanoue.photochopbattles.RedditJson.Comment;
@@ -24,18 +25,16 @@ import java.util.List;
 public class GalleryActivity extends AppCompatActivity {
 
     private GalleryViewPagerAdapter mAdapter;
-//    private ViewPager mPager;
     private ViewPager mPager;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery_layout);
-//        getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 
 
         Toolbar galleryToolbar = (Toolbar) findViewById(R.id.gallery_toolbar);
-//        setSupportActionBar(galleryToolbar);
 
         Link passedLink = (Link) getIntent().getSerializableExtra("com.scottlanoue.photochopbattles.RedditJson.Link");
 
@@ -46,8 +45,11 @@ public class GalleryActivity extends AppCompatActivity {
 //        Glide.with(getApplicationContext()).load(passedLink.getUrl()).placeholder(R.drawable.abc_spinner_mtrl_am_alpha).crossFade().into(galleryImage);
 //        new DownloadImagesTask(findViewById(android.R.id.content), galleryImage).execute(passedLink.getUrl());
 
+//        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         try {
             doWork(passedLink.getPermaLink() + ".json");
+            progressBar.setVisibility(View.GONE);
         } catch (Exception e) {
             Log.v("did we come here", passedLink.getPermaLink() + ".json");
         }
@@ -109,7 +111,7 @@ public class GalleryActivity extends AppCompatActivity {
         List<Comment> comments = fetch.readJsonStream((InputStream) request.getContent());
 
         mAdapter = new GalleryViewPagerAdapter(comments.size() - 1, getURLSfromCommments(comments), this.getApplicationContext(), comments, this);
-//        mPager = (ViewPager) findViewById(R.id.galleryFrameLayout);
+
         mPager = (ViewPager) findViewById(R.id.viewPager);
         mPager.setAdapter(mAdapter);
     }

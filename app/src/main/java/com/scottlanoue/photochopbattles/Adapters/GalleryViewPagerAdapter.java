@@ -90,7 +90,7 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
                     }
                 });
 
-        itemView.findViewById(R.id.progressBar).setVisibility(View.GONE);
+//        View.findViewById(R.id.progressBar).setVisibility(View.GONE);
 
         /**
          * This allows me to click on the image to kill the gallery activity and return to the main list!
@@ -111,12 +111,4 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         ((ViewPager) container).removeView((SlidingUpPanelLayout) object);
     }
-
-    /**
-     * I dont think this is needed...
-     */
-//    @Override
-//    public void onPageSelected(int position) {
-//        Log.v("hmmm ", "ok");
-//    }
 }
