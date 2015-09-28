@@ -20,6 +20,7 @@ import com.scottlanoue.photochopbattles.AsyncTasks.DownloadImagesTask;
 import com.scottlanoue.photochopbattles.GalleryActivity;
 import com.scottlanoue.photochopbattles.R;
 import com.scottlanoue.photochopbattles.RedditJson.Comment;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.List;
 
@@ -58,9 +59,11 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
         View itemView = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
                 .inflate(R.layout.gallery_item, container, false);
 
-        // TODO get this layout to inflate
-        TextView caption = (TextView) itemView.findViewById(R.id.galleryCaption);
+        SlidingUpPanelLayout slidingUpPanelLayout = (SlidingUpPanelLayout) itemView.findViewById(R.id.sliding_layout);
+        TextView caption = (TextView) itemView.findViewById(R.id.parent_comment);
         final SubsamplingScaleImageView image = (SubsamplingScaleImageView) itemView.findViewById(R.id.galleryImage);
+
+        slidingUpPanelLayout.setAnchorPoint(0.5f);
         caption.setText(commentsList.get(position).getBody());
 
         /*
@@ -106,7 +109,7 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        ((ViewPager) container).removeView((RelativeLayout) object);
+        ((ViewPager) container).removeView((SlidingUpPanelLayout) object);
     }
 
     /**

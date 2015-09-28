@@ -3,10 +3,12 @@ package com.scottlanoue.photochopbattles;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 
 import com.scottlanoue.photochopbattles.Adapters.GalleryViewPagerAdapter;
 import com.scottlanoue.photochopbattles.RedditJson.Comment;
@@ -29,12 +31,16 @@ public class GalleryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery_layout);
+//        getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 
+
+        Toolbar galleryToolbar = (Toolbar) findViewById(R.id.gallery_toolbar);
+//        setSupportActionBar(galleryToolbar);
 
         Link passedLink = (Link) getIntent().getSerializableExtra("com.scottlanoue.photochopbattles.RedditJson.Link");
-//        Log.d("this is the link", passedLink + " ");
 
-        this.getSupportActionBar().setTitle(passedLink.getTitle());
+        galleryToolbar.setTitle(passedLink.getTitle());
+        setSupportActionBar(galleryToolbar);
 
 //        ImageView galleryImage = (ImageView) findViewById(R.id.galleryImage);
 //        Glide.with(getApplicationContext()).load(passedLink.getUrl()).placeholder(R.drawable.abc_spinner_mtrl_am_alpha).crossFade().into(galleryImage);
