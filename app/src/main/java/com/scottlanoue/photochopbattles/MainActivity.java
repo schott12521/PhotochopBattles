@@ -1,8 +1,13 @@
 package com.scottlanoue.photochopbattles;
 
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.StrictMode;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,13 +16,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -45,17 +51,27 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerAdapter;
     private GridLayoutManager gridLayoutManager;
+    private ProgressBar progressBar;
 
     /**
      * These objects are used for scroll detection
      */
     private boolean notLoading = true;
-    int pastVisiblesItems, visibleItemCount, totalItemCount;
+    int pastVisibleItems, visibleItemCount, totalItemCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            TypedValue typedValue = new TypedValue();
+            Resources.Theme theme = getTheme();
+            theme.resolveAttribute(R.color.primary700, typedValue, true);
+            Log.v("This color: ", getResources().getColor(R.color.primary700) + " ");
+            ActivityManager.TaskDescription td = new ActivityManager.TaskDescription(null, BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher), getResources().getColor(R.color.primary700));
+            setTaskDescription(td);
+        }
 
         /*
         This creates the toolbar for the main activity
@@ -65,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerLayout);
         recyclerAdapter = new RecyclerViewAdapter();
+
         /*
          TODO this will decide how many 'tiles' should be shown based on screen metrics
          */
@@ -74,10 +91,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             gridLayoutManager = new GridLayoutManager(this, 2);
         }
+
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(recyclerAdapter);
 
-
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         new DownloadLinksTask(psbURL, true).execute();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -104,10 +122,10 @@ public class MainActivity extends AppCompatActivity {
 
                 visibleItemCount = gridLayoutManager.getChildCount();
                 totalItemCount = gridLayoutManager.getItemCount();
-                pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
+                pastVisibleItems = gridLayoutManager.findFirstVisibleItemPosition();
 
                 if (notLoading) {
-                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount - 3) {
+                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount - 3) {
                         notLoading = false;
                         if (recyclerAdapter.linksList.size() > 0) {
                             /*
@@ -217,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
         public DownloadLinksTask(String url, boolean firstRefresh) {
             this.url = url;
             this.firstRefresh = firstRefresh;
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -239,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
                 swipe.setRefreshing(false);
             }
             recyclerAdapter.addData(links);
+            progressBar.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
             notLoading = true;
         }

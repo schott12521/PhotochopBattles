@@ -1,5 +1,7 @@
 package com.scottlanoue.photochopbattles;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.Window;
 import android.widget.ProgressBar;
 
@@ -41,15 +44,12 @@ public class GalleryActivity extends AppCompatActivity {
 
         galleryToolbar.setTitle(passedLink.getTitle());
         setSupportActionBar(galleryToolbar);
-        if (Build.VERSION.SDK_INT >= 19) {
-            getWindow().setStatusBarColor(R.color.primary700);
-        }
 
 //        ImageView galleryImage = (ImageView) findViewById(R.id.galleryImage);
 //        Glide.with(getApplicationContext()).load(passedLink.getUrl()).placeholder(R.drawable.abc_spinner_mtrl_am_alpha).crossFade().into(galleryImage);
 //        new DownloadImagesTask(findViewById(android.R.id.content), galleryImage).execute(passedLink.getUrl());
 
-//        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) findViewById(R.id.gallery_progress_bar);
 
         try {
             doWork(passedLink.getPermaLink() + ".json");
@@ -66,7 +66,6 @@ public class GalleryActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     closeThisView();
-                    Log.v("did we come here", "Hmmmm");
                 }
             });
         }
@@ -123,6 +122,11 @@ public class GalleryActivity extends AppCompatActivity {
 
         mPager = (ViewPager) findViewById(R.id.viewPager);
         mPager.setAdapter(mAdapter);
+
+        /**
+         * TODO Show the progress bar while loading!
+         */
+        mPager.setVisibility(View.VISIBLE);
     }
 
     public String[] getURLSfromCommments(List<Comment> comments) {
@@ -136,6 +140,27 @@ public class GalleryActivity extends AppCompatActivity {
     }
 
     public void closeThisView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            final View myView = findViewById(R.id.gallery_frame_layout);
+            int cx = myView.getWidth() / 2;
+            int cy = myView.getHeight() / 2;
+            int initialRadius = myView.getWidth();
+            final Animator anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, initialRadius, 0);
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    myView.setVisibility(View.GONE);
+                    finishAndKill();
+                }
+            });
+            anim.start();
+        } else {
+            finishAndKill();
+        }
+    }
+
+    public void finishAndKill() {
         this.finish();
     }
 }

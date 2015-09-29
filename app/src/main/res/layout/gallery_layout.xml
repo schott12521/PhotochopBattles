@@ -1,5 +1,5 @@
-<RelativeLayout
-    android:id="@+id/galleryFrameLayout"
+<FrameLayout
+    android:id="@+id/gallery_frame_layout"
     style="@style/Theme.AppCompat.Translucent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,19 +8,19 @@
     android:background="#96000000"
     tools:context="com.scottlanoue.photochopbattles.GalleryActivity">
 
-    <!--<ProgressBar-->
-        <!--android:id="@+id/progressBar"-->
-        <!--style="?android:attr/progressBarStyleLarge"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_gravity="center"/>-->
-
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="?attr/actionBarSize"/>
+        android:paddingTop="?attr/actionBarSize"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/gallery_progress_bar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/gallery_toolbar"
@@ -31,4 +31,4 @@
         />
 
 
-</RelativeLayout>
+</FrameLayout>
