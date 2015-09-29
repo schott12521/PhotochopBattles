@@ -1,5 +1,6 @@
 package com.scottlanoue.photochopbattles;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +41,9 @@ public class GalleryActivity extends AppCompatActivity {
 
         galleryToolbar.setTitle(passedLink.getTitle());
         setSupportActionBar(galleryToolbar);
+        if (Build.VERSION.SDK_INT >= 19) {
+            getWindow().setStatusBarColor(R.color.primary700);
+        }
 
 //        ImageView galleryImage = (ImageView) findViewById(R.id.galleryImage);
 //        Glide.with(getApplicationContext()).load(passedLink.getUrl()).placeholder(R.drawable.abc_spinner_mtrl_am_alpha).crossFade().into(galleryImage);
@@ -54,13 +58,18 @@ public class GalleryActivity extends AppCompatActivity {
             Log.v("did we come here", passedLink.getPermaLink() + ".json");
         }
 
-        mPager.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closeThisView();
-                Log.v("did we come here", "Hmmmm");
-            }
-        });
+        /**
+         * Null check that should probably be handled better
+         */
+        if (mPager != null) {
+            mPager.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    closeThisView();
+                    Log.v("did we come here", "Hmmmm");
+                }
+            });
+        }
     }
 
     @Override

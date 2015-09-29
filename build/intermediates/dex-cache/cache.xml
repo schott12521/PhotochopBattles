@@ -2,11 +2,39 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.sothree.slidinguppanel\library\3.1.1\jars\classes.jar"
+        jar="C:\Users\schot_000\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.6.1\86b122e640af09b0723e1fa44083c354ba6d9089\glide-3.6.1.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="76351d3022d4a2803789c01046aa0aa4b0d5d134">
-        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-7c6713d1716e1552b7192da5cc67bcf045d2c6f3.jar" />
+        sha1="86b122e640af09b0723e1fa44083c354ba6d9089">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\glide-3.6.1-506dfc03edce94cbce38e2e9a712c7c89718585a.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5b37cf49773f7f17aca9830efd3053b0cac56728">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-a10e62d2c89d47f8bb6b4cbeeb2c3b5c29a54d1a.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\gson-2.3.1-0542603cf9128cc5938e1f17d0b0ef81f35ba535.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-8842728b875d4ec84bd9295ed58b0a270e193d07.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.davemorrissey.labs\subsampling-scale-image-view\3.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3d7c0b04b923dbcb3181aaddb6f0e3a6d28f785e">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-143e685103b51bf62408e8401c3bf64ae042eae5.jar" />
     </item>
     <item
         jar="C:\Users\schot_000\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
@@ -16,11 +44,67 @@
         <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\library-2.4.0-2352ba9565bac18f06aff8a42be7933483e2eb17.jar" />
     </item>
     <item
-        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.davemorrissey.labs\subsampling-scale-image-view\3.2.0\jars\classes.jar"
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.android.support\gridlayout-v7\22.2.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="3d7c0b04b923dbcb3181aaddb6f0e3a6d28f785e">
-        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-143e685103b51bf62408e8401c3bf64ae042eae5.jar" />
+        sha1="4c72b7305d9c42d7729d66694dc984f69896a844">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-801d610d746d53e0d71d876f890b6a2255c474ee.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\.gradle\caches\modules-2\files-2.1\com.koushikdutta.async\androidasync\2.1.6\e3d5f6ab2003e31f2cf5ea61b4731a21e9517935\androidasync-2.1.6.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e3d5f6ab2003e31f2cf5ea61b4731a21e9517935">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\androidasync-2.1.6-44de808a2c796ad2ce71ac66758196853ecf18ef.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-84e813904effa8699f2f0db15f8a201d92bfae05.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.sothree.slidinguppanel\library\3.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="76351d3022d4a2803789c01046aa0aa4b0d5d134">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-7c6713d1716e1552b7192da5cc67bcf045d2c6f3.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\.gradle\caches\modules-2\files-2.1\com.koushikdutta.ion\ion\2.1.6\cd55ef3ba6d8b62838b658ba2507b019dffb3a08\ion-2.1.6.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="cd55ef3ba6d8b62838b658ba2507b019dffb3a08">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\ion-2.1.6-c32c6661000941a17daedebaac5efd691f1959f6.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-9cf6e111ff7b1b1780269a326dd3ad974ec16f44.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-2c0e8c8eed91b4465332f067b4f2b53c96b6f607.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\exploded-aar\com.android.support\palette-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="060b30a619b8d3ba053e1d7dc08b3fdf0dd81530">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\classes-008af3cf75954e3725e158d505eeccb2caafcbd6.jar" />
+    </item>
+    <item
+        jar="C:\Users\schot_000\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="C:\Users\schot_000\AndroidStudioProjects\PhotochopBattles\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-c5e7baa4bf0c96a50715df7d0f14997d7c75ef73.jar" />
     </item>
 
 </items>
