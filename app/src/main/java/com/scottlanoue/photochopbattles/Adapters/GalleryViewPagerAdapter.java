@@ -1,7 +1,9 @@
 package com.scottlanoue.photochopbattles.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -55,7 +57,7 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         View itemView = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
                 .inflate(R.layout.gallery_item, container, false);
 
@@ -90,7 +92,7 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
                     }
                 });
 
-//        View.findViewById(R.id.progressBar).setVisibility(View.GONE);
+//        itemView.findViewById(R.id.gallery_progress_bar).setVisibility(View.GONE);
 
         /**
          * This allows me to click on the image to kill the gallery activity and return to the main list!
@@ -99,7 +101,17 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 galleryActivity.closeThisView();
-                Log.v("did we come here", "Hmmmm");
+            }
+        });
+
+        /**
+         * TODO actually open the correct image
+         */
+        caption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(commentsList.get(position).getUrl()));
+                galleryActivity.startActivity(browserIntent);
             }
         });
 

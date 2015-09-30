@@ -8,12 +8,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.view.Window;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.scottlanoue.photochopbattles.Adapters.GalleryViewPagerAdapter;
 import com.scottlanoue.photochopbattles.RedditJson.Comment;
@@ -31,16 +32,17 @@ public class GalleryActivity extends AppCompatActivity {
     private GalleryViewPagerAdapter mAdapter;
     private ViewPager mPager;
     private ProgressBar progressBar;
+    private Link link;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery_layout);
 
-
         Toolbar galleryToolbar = (Toolbar) findViewById(R.id.gallery_toolbar);
 
         Link passedLink = (Link) getIntent().getSerializableExtra("com.scottlanoue.photochopbattles.RedditJson.Link");
+        link = passedLink;
 
         galleryToolbar.setTitle(passedLink.getTitle());
         setSupportActionBar(galleryToolbar);
@@ -55,7 +57,8 @@ public class GalleryActivity extends AppCompatActivity {
             doWork(passedLink.getPermaLink() + ".json");
             progressBar.setVisibility(View.GONE);
         } catch (Exception e) {
-            Log.v("did we come here", passedLink.getPermaLink() + ".json");
+            Log.v("did we come here", " not good");
+            e.printStackTrace();
         }
 
         /**
@@ -101,7 +104,7 @@ public class GalleryActivity extends AppCompatActivity {
             //
             // that hierarchy.
 //            NavUtils.navigateUpFromSameTask(this);
-            this.finish();
+            closeThisView();
             Log.v("this should do it", "this should do it");
             return true;
         }
@@ -141,26 +144,39 @@ public class GalleryActivity extends AppCompatActivity {
 
     public void closeThisView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            final View myView = findViewById(R.id.gallery_frame_layout);
-            int cx = myView.getWidth() / 2;
-            int cy = myView.getHeight() / 2;
-            int initialRadius = myView.getWidth();
-            final Animator anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, initialRadius, 0);
-            anim.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    super.onAnimationEnd(animation);
-                    myView.setVisibility(View.GONE);
-                    finishAndKill();
-                }
-            });
-            anim.start();
+            try {
+                final View myView = findViewById(R.id.gallery_frame_layout);
+                int cx = myView.getWidth() / 2;
+                int cy = myView.getHeight() / 2;
+                int initialRadius = myView.getWidth();
+                final Animator anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, initialRadius, 0);
+                anim.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        myView.setVisibility(View.GONE);
+                        finish();
+                    }
+                });
+                anim.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+                finish();
+            }
         } else {
-            finishAndKill();
+            finish();
         }
     }
 
-    public void finishAndKill() {
-        this.finish();
+    public void finish() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP)
+            super.finishAfterTransition();
+        else
+            super.finish();
+        overridePendingTransition(0, 0);
+    }
+
+    public Link getLink() {
+        return link;
     }
 }

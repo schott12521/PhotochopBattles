@@ -5,13 +5,15 @@ public class Comment {
 	private String author;
 	private String body;
 	private String bodyHtml;
+	private String url;
 	private int score;
 	
-	public Comment(String authorIn, String bodyIn, String body_htmlIn, int scoreIn) {
+	public Comment(String authorIn, String bodyIn, String body_htmlIn, int scoreIn, String urlIn) {
 		author = authorIn;
 		body = bodyIn;
 		bodyHtml = body_htmlIn;
 		score = scoreIn;
+		url = urlIn;
 	}
 	
 	public String getAuthor() {
@@ -37,6 +39,10 @@ public class Comment {
 		String returnString = bodyHtml.substring(bodyHtml.indexOf("&lt;a href=\"") + 12);
 		returnString = returnString.substring(0, returnString.indexOf("\"&gt"));
 		return returnString;
+	}
+
+	public String getUrl() {
+		return url;
 	}
 	
 	public String toString() {

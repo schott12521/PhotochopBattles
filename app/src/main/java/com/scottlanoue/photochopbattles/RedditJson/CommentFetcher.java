@@ -108,6 +108,7 @@ public class CommentFetcher {
 		String author = null;
 		String bodyHtml = null;
 		int score = 0;
+		String url = null;
 		
 		reader.beginObject();
 		while (reader.hasNext()) {
@@ -120,12 +121,14 @@ public class CommentFetcher {
 				score = reader.nextInt();
 			} else if (name.equals("body_html")) {
 				bodyHtml = reader.nextString();
+			} else if (name.equals("permalink")) {
+				url = "http://reddit.com/" + reader.nextString();
 			} else {
 				reader.skipValue();
 			}
 		}
 		reader.endObject();
-		return new Comment(author, body, bodyHtml, score);
+		return new Comment(author, body, bodyHtml, score, url);
 	}
 	
 	private ArrayList<Comment> returnCommentsList() {
