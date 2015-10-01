@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.StrictMode;
@@ -20,14 +21,17 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.scottlanoue.photochopbattles.RedditJson.Link;
 import com.scottlanoue.photochopbattles.RedditJson.LinkFetcher;
 
@@ -370,8 +374,8 @@ public class MainActivity extends AppCompatActivity {
         public class LinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             TextView title;
             TextView additionalInfo;
-//            TextView numPictures;
             ImageView photo;
+            FrameLayout tile;
 
             LinkViewHolder(View itemView) {
                 super(itemView);
@@ -379,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
                 photo = (ImageView) itemView.findViewById(R.id.photo);
                 additionalInfo = (TextView) itemView.findViewById(R.id.additionalInfo);
                 title = (TextView) itemView.findViewById(R.id.title);
-//                numPictures = (TextView) itemView.findViewById(R.id.numPictures);
+                tile = (FrameLayout) itemView.findViewById(R.id.tile);
             }
 
             @Override
@@ -389,6 +393,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent galleryIntent = new Intent(view.getContext(), GalleryActivity.class);
                 galleryIntent.putExtra("com.scottlanoue.photochopbattles.RedditJson.Link", item);
+                if (!item.getDomain().contains("self"))
+                    galleryIntent.putExtra("BitmapImage", ((GlideBitmapDrawable) photo.getDrawable()).getBitmap());
                 startActivity(galleryIntent);
             }
         }

@@ -5,7 +5,7 @@ public class Comment {
 	private String author;
 	private String body;
 	private String bodyHtml;
-	private String url;
+	private String id;
 	private int score;
 	
 	public Comment(String authorIn, String bodyIn, String body_htmlIn, int scoreIn, String urlIn) {
@@ -13,7 +13,7 @@ public class Comment {
 		body = bodyIn;
 		bodyHtml = body_htmlIn;
 		score = scoreIn;
-		url = urlIn;
+		id = urlIn;
 	}
 	
 	public String getAuthor() {
@@ -30,19 +30,25 @@ public class Comment {
 	
 	public String getImageLink() {
 		if (!bodyHtml.contains("a href=")) {
+            /**
+             * Workaround to get comment to display first
+             */
+            if (bodyHtml.startsWith("Main Image: ")) {
+                return body;
+            }
 			/**
 			 * If the program could not find a link in the comment HTML,
 			 * return an error for handling later.
 			 */
-			return "Error: Picture not found (Error 001)";
+			return "Error: Picture not found (Error 001)" + bodyHtml;
 		}
 		String returnString = bodyHtml.substring(bodyHtml.indexOf("&lt;a href=\"") + 12);
 		returnString = returnString.substring(0, returnString.indexOf("\"&gt"));
 		return returnString;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getId() {
+		return id;
 	}
 	
 	public String toString() {

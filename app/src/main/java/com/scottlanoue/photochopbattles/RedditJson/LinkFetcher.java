@@ -97,7 +97,7 @@ public class LinkFetcher {
         String title = null;
         String url = null;
         String permaLink = "http://www.reddit.com";
-        int score = 0;
+        int comments = 0;
         String domain = null;
         String id = null;
 
@@ -108,8 +108,8 @@ public class LinkFetcher {
                 title = reader.nextString();
             } else if (name.equals("url")) {
                 url = reader.nextString();
-            } else if (name.equals("score")) {
-                score = reader.nextInt();
+            } else if (name.equals("num_comments")) {
+                comments = reader.nextInt();
             } else if (name.equals("permalink")) {
                 permaLink = permaLink + reader.nextString();
             } else if (name.equals("domain")) {
@@ -121,7 +121,7 @@ public class LinkFetcher {
             }
         }
         reader.endObject();
-        return new Link(title, url, permaLink, score, domain, id);
+        return new Link(title, url, permaLink, comments, domain, id);
     }
 
     private ArrayList<Link> returnTheList() {

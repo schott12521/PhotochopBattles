@@ -2,6 +2,7 @@ package com.scottlanoue.photochopbattles;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -33,6 +34,7 @@ public class GalleryActivity extends AppCompatActivity {
     private ViewPager mPager;
     private ProgressBar progressBar;
     private Link link;
+    public Bitmap mainImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class GalleryActivity extends AppCompatActivity {
 
         Link passedLink = (Link) getIntent().getSerializableExtra("com.scottlanoue.photochopbattles.RedditJson.Link");
         link = passedLink;
+        mainImage = (Bitmap) getIntent().getParcelableExtra("BitmapImage");
 
         galleryToolbar.setTitle(passedLink.getTitle());
         setSupportActionBar(galleryToolbar);
@@ -120,8 +123,13 @@ public class GalleryActivity extends AppCompatActivity {
 
         request.connect();
         List<Comment> comments = fetch.readJsonStream((InputStream) request.getContent());
+        /*
+        This is a bad hack/workaround to get the first image to show as a 'comment' even though it's the linked image...ew lol
+         */
+        comments.add(0, new Comment(null, link.getUrl(), "Main Image: ", 0, null));
 
-        mAdapter = new GalleryViewPagerAdapter(comments.size() - 1, getURLSfromCommments(comments), this.getApplicationContext(), comments, this);
+//        mAdapter.addView();
+        mAdapter = new GalleryViewPagerAdapter(comments.size() - 1, getURLSfromCommments(comments), this.getApplicationContext(), comments, this, mainImage);
 
         mPager = (ViewPager) findViewById(R.id.viewPager);
         mPager.setAdapter(mAdapter);

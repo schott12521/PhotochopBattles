@@ -33,17 +33,15 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
     private Context mContext;
     private List<Comment> commentsList;
     private GalleryActivity galleryActivity;
+    private Bitmap firstImage;
 
-    public GalleryViewPagerAdapter() {
-
-    }
-
-    public GalleryViewPagerAdapter(int numItems, String[] urls, Context contextIn, List<Comment> commentsList, GalleryActivity galleryActivity) {
+    public GalleryViewPagerAdapter(int numItems, String[] urls, Context contextIn, List<Comment> commentsList, GalleryActivity galleryActivity, Bitmap firstImageIn) {
         this.size = numItems;
         this.urls = urls;
         this.mContext = contextIn;
         this.commentsList = commentsList;
         this.galleryActivity = galleryActivity;
+        this.firstImage = firstImageIn;
     }
 
     @Override
@@ -61,59 +59,72 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
         View itemView = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
                 .inflate(R.layout.gallery_item, container, false);
 
-        SlidingUpPanelLayout slidingUpPanelLayout = (SlidingUpPanelLayout) itemView.findViewById(R.id.sliding_layout);
-        TextView caption = (TextView) itemView.findViewById(R.id.parent_comment);
-        final SubsamplingScaleImageView image = (SubsamplingScaleImageView) itemView.findViewById(R.id.galleryImage);
+        if (position == 0) {
+            final SubsamplingScaleImageView image = (SubsamplingScaleImageView) itemView.findViewById(R.id.galleryImage);
+            image.setImage(ImageSource.bitmap(firstImage));
+            SlidingUpPanelLayout slidingUpPanelLayout = (SlidingUpPanelLayout) itemView.findViewById(R.id.sliding_layout);
+            slidingUpPanelLayout.setEnabled(false);
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    galleryActivity.closeThisView();
+                }
+            });
+        } else {
+            SlidingUpPanelLayout slidingUpPanelLayout = (SlidingUpPanelLayout) itemView.findViewById(R.id.sliding_layout);
+            TextView caption = (TextView) itemView.findViewById(R.id.parent_comment);
+            final SubsamplingScaleImageView image = (SubsamplingScaleImageView) itemView.findViewById(R.id.galleryImage);
 
-        slidingUpPanelLayout.setAnchorPoint(0.5f);
-        caption.setText(commentsList.get(position).getBody());
+            slidingUpPanelLayout.setAnchorPoint(0.5f);
+            caption.setText(commentsList.get(position).getBody());
 
         /*
         This determines if the code needs to add an image extenstion to the link!
 
         NOTE: the first check makes sure that the program is not trying to add an image extension to a comment with an "Error 001"
          */
-        if (!urls[position].contains("Error 001") && !urls[position].substring(urls[position].lastIndexOf("/"), urls[position].length()).contains(".")) {
-            urls[position] = urls[position] + ".png";
-        }
+            if (!urls[position].contains("Error 001") && !urls[position].substring(urls[position].lastIndexOf("/"), urls[position].length()).contains(".")) {
+                urls[position] = urls[position] + ".png";
+            }
 
-        // TODO mess more with ion and animations
+            // TODO mess more with ion and animations
 //        new DownloadImagesTask(itemView, image, mContext).execute(urls[position]);
-        Ion.with(mContext)
-                .load(urls[position])
-                .withBitmap()
+            Ion.with(mContext)
+                    .load(urls[position])
+                    .withBitmap()
 //                .animateGif(AnimateGifMode.ANIMATE)
-                .asBitmap()
-                .setCallback(new FutureCallback<Bitmap>() {
-                    @Override
-                    public void onCompleted(Exception e, Bitmap result) {
-                        if (result != null)
-                            image.setImage(ImageSource.bitmap(result));
-                    }
-                });
+                    .asBitmap()
+                    .setCallback(new FutureCallback<Bitmap>() {
+                        @Override
+                        public void onCompleted(Exception e, Bitmap result) {
+                            if (result != null)
+                                image.setImage(ImageSource.bitmap(result));
+                        }
+                    });
 
 //        itemView.findViewById(R.id.gallery_progress_bar).setVisibility(View.GONE);
 
-        /**
-         * This allows me to click on the image to kill the gallery activity and return to the main list!
-         */
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                galleryActivity.closeThisView();
-            }
-        });
+            /**
+             * This allows me to click on the image to kill the gallery activity and return to the main list!
+             */
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    galleryActivity.closeThisView();
+                }
+            });
 
-        /**
-         * TODO actually open the correct image
-         */
-        caption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(commentsList.get(position).getUrl()));
-                galleryActivity.startActivity(browserIntent);
-            }
-        });
+            /**
+             * TODO actually open the correct image
+             */
+            caption.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(galleryActivity.getLink().getPermaLink() + commentsList.get(position).getId()));
+                    galleryActivity.startActivity(browserIntent);
+                }
+            });
+        }
 
         ((ViewPager) container).addView(itemView);
         return itemView;
