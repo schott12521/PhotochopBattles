@@ -33,15 +33,15 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
     private Context mContext;
     private List<Comment> commentsList;
     private GalleryActivity galleryActivity;
-    private Bitmap firstImage;
+    private Bitmap bitmapImage;
 
-    public GalleryViewPagerAdapter(int numItems, String[] urls, Context contextIn, List<Comment> commentsList, GalleryActivity galleryActivity, Bitmap firstImageIn) {
+    public GalleryViewPagerAdapter(int numItems, String[] urls, Context contextIn, List<Comment> commentsList, GalleryActivity galleryActivity, Bitmap bitmapImageIn) {
         this.size = numItems;
         this.urls = urls;
         this.mContext = contextIn;
         this.commentsList = commentsList;
         this.galleryActivity = galleryActivity;
-        this.firstImage = firstImageIn;
+        this.bitmapImage = bitmapImageIn;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
 
         if (position == 0) {
             final SubsamplingScaleImageView image = (SubsamplingScaleImageView) itemView.findViewById(R.id.galleryImage);
-            image.setImage(ImageSource.bitmap(firstImage));
+            image.setImage(ImageSource.bitmap(bitmapImage));
             SlidingUpPanelLayout slidingUpPanelLayout = (SlidingUpPanelLayout) itemView.findViewById(R.id.sliding_layout);
             slidingUpPanelLayout.setEnabled(false);
             image.setOnClickListener(new View.OnClickListener() {

@@ -159,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+//        recyclerView.addOnItemTouchListener(new RecyclerViewSimpleOnItemTouchListener());
     }
 
     @Override
@@ -371,6 +372,8 @@ public class MainActivity extends AppCompatActivity {
             return returnString;
         }
 
+
+//        public class LinkViewHolder extends RecyclerView.ViewHolder {
         public class LinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             TextView title;
             TextView additionalInfo;
@@ -394,9 +397,35 @@ public class MainActivity extends AppCompatActivity {
                 Intent galleryIntent = new Intent(view.getContext(), GalleryActivity.class);
                 galleryIntent.putExtra("com.scottlanoue.photochopbattles.RedditJson.Link", item);
                 if (!item.getDomain().contains("self"))
+                    Log.v("baby", " justin"); // Sometimes, the app crashes here
                     galleryIntent.putExtra("BitmapImage", ((GlideBitmapDrawable) photo.getDrawable()).getBitmap());
                 startActivity(galleryIntent);
             }
         }
     }
+
+//    public class RecyclerViewSimpleOnItemTouchListener implements RecyclerView.OnItemTouchListener {
+//
+//        @Override
+//        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+//            return false;
+//        }
+//
+//        @Override
+//        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+//            Log.v("hmmmm ", " here");
+//        }
+//
+//        @Override
+//        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+//
+//        }
+//    }
+//
+//    public static interface ClickListener {
+//
+//        public void onClick(View view, int position);
+//
+//        public void onLongClick(View view, int position);
+//    }
 }

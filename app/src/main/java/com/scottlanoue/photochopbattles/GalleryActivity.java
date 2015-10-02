@@ -45,7 +45,9 @@ public class GalleryActivity extends AppCompatActivity {
 
         Link passedLink = (Link) getIntent().getSerializableExtra("com.scottlanoue.photochopbattles.RedditJson.Link");
         link = passedLink;
+        Log.v("what do you mean", " justin");
         mainImage = (Bitmap) getIntent().getParcelableExtra("BitmapImage");
+        Log.v("where are u now", " justin");
 
         galleryToolbar.setTitle(passedLink.getTitle());
         setSupportActionBar(galleryToolbar);
@@ -130,6 +132,7 @@ public class GalleryActivity extends AppCompatActivity {
 
 //        mAdapter.addView();
         mAdapter = new GalleryViewPagerAdapter(comments.size() - 1, getURLSfromCommments(comments), this.getApplicationContext(), comments, this, mainImage);
+//        mAdapter = new GalleryViewPagerAdapter(comments.size() - 1, getURLSfromCommments(comments), this.getApplicationContext(), comments, this);
 
         mPager = (ViewPager) findViewById(R.id.viewPager);
         mPager.setAdapter(mAdapter);
