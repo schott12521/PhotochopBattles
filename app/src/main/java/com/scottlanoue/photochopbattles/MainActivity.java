@@ -398,6 +398,7 @@ public class MainActivity extends AppCompatActivity {
                 galleryIntent.putExtra("com.scottlanoue.photochopbattles.RedditJson.Link", item);
                 if (!item.getDomain().contains("self"))
                     Log.v("baby", " justin"); // Sometimes, the app crashes here
+                // We have to explore alternative options for sending this Bitmap
                     galleryIntent.putExtra("BitmapImage", ((GlideBitmapDrawable) photo.getDrawable()).getBitmap());
                 startActivity(galleryIntent);
             }
