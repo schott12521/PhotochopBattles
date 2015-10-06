@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -399,7 +400,11 @@ public class MainActivity extends AppCompatActivity {
                 if (!item.getDomain().contains("self"))
                     Log.v("baby", " justin"); // Sometimes, the app crashes here
                 // We have to explore alternative options for sending this Bitmap
-                    galleryIntent.putExtra("BitmapImage", ((GlideBitmapDrawable) photo.getDrawable()).getBitmap());
+                    try {
+                        galleryIntent.putExtra("BitmapImage", ((GlideBitmapDrawable) photo.getDrawable()).getBitmap());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 startActivity(galleryIntent);
             }
         }
