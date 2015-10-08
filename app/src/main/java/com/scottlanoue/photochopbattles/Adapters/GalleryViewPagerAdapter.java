@@ -61,7 +61,9 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
 
         if (position == 0) {
             final SubsamplingScaleImageView image = (SubsamplingScaleImageView) itemView.findViewById(R.id.galleryImage);
-            image.setImage(ImageSource.bitmap(bitmapImage));
+            if (bitmapImage != null) {
+                image.setImage(ImageSource.bitmap(bitmapImage));
+            }
             SlidingUpPanelLayout slidingUpPanelLayout = (SlidingUpPanelLayout) itemView.findViewById(R.id.sliding_layout);
             slidingUpPanelLayout.setEnabled(false);
             image.setOnClickListener(new View.OnClickListener() {

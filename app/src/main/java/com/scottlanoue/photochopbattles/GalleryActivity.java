@@ -34,20 +34,31 @@ public class GalleryActivity extends AppCompatActivity {
     private ViewPager mPager;
     private ProgressBar progressBar;
     private Link link;
+    private int xStartPos, yStartPos;
+
     public Bitmap mainImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery_layout);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            View galleryView = findViewById(R.id.gallery_frame_layout);
+//            galleryView.setVisibility(View.GONE);
+//            Animator anim = ViewAnimationUtils.createCircularReveal(galleryView,
+//                    (int) getIntent().getSerializableExtra("X"), (int) getIntent().getSerializableExtra("Y"), 0,
+//                    Math.max(galleryView.getWidth(), galleryView.getHeight()));
+//        }
+
+
+        xStartPos = (int) getIntent().getSerializableExtra("X");
+        yStartPos = (int) getIntent().getSerializableExtra("Y");
 
         Toolbar galleryToolbar = (Toolbar) findViewById(R.id.gallery_toolbar);
 
         Link passedLink = (Link) getIntent().getSerializableExtra("com.scottlanoue.photochopbattles.RedditJson.Link");
         link = passedLink;
-        Log.v("what do you mean", " justin");
-        mainImage = (Bitmap) getIntent().getParcelableExtra("BitmapImage");
-        Log.v("where are u now", " justin");
+        mainImage = getIntent().getParcelableExtra("Bitmap");
 
         galleryToolbar.setTitle(passedLink.getTitle());
         setSupportActionBar(galleryToolbar);
@@ -160,7 +171,7 @@ public class GalleryActivity extends AppCompatActivity {
                 int cx = myView.getWidth() / 2;
                 int cy = myView.getHeight() / 2;
                 int initialRadius = myView.getWidth();
-                final Animator anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, initialRadius, 0);
+                final Animator anim = ViewAnimationUtils.createCircularReveal(myView, xStartPos, yStartPos, initialRadius, 0);
                 anim.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {

@@ -2,8 +2,10 @@ package com.scottlanoue.photochopbattles;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,8 +18,10 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.test.mock.MockDialogInterface;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,7 +47,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerViewAdapter recyclerAdapter;
     private GridLayoutManager gridLayoutManager;
     private ProgressBar progressBar;
+
+    private int xClickPos = 0, yClickPos = 0;
+    public Bitmap mainPhoto;
 
     /**
      * These objects are used for scroll detection
@@ -160,7 +166,51 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-//        recyclerView.addOnItemTouchListener(new RecyclerViewSimpleOnItemTouchListener());
+
+        final GestureDetector gestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener(){
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                return true;
+            }
+        });
+        /** TODO BAD BAD NOT GOOD **/
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public void onTouchEvent(RecyclerView v, MotionEvent e) {
+                if (e.getAction() == MotionEvent.ACTION_UP) {
+                    Log.d("clicked", " plz");
+                }
+            }
+
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                View view = rv.findChildViewUnder(e.getX(), e.getY());
+                if (view != null && gestureDetector.onTouchEvent(e)) {
+                    xClickPos = (int) e.getX();
+                    yClickPos= (int) e.getY();
+                    int itemPos = rv.getChildAdapterPosition(view);
+                    Link item = recyclerAdapter.linksList.get(itemPos);
+
+                    Intent galleryIntent = new Intent(view.getContext(), GalleryActivity.class);
+                    galleryIntent.putExtra("com.scottlanoue.photochopbattles.RedditJson.Link", item);
+                    galleryIntent.putExtra("X", xClickPos);
+                    galleryIntent.putExtra("Y", yClickPos);
+                    if (!item.getDomain().contains("self"))
+                        Log.v("baby", " justin"); // Sometimes, the app crashes here
+                    if (mainPhoto != null) {
+                        galleryIntent.putExtra("Bitmap", mainPhoto);
+                    }
+                    startActivity(galleryIntent);
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
     }
 
     @Override
@@ -312,8 +362,10 @@ public class MainActivity extends AppCompatActivity {
                         .fitCenter()
                         .crossFade()
                         .thumbnail(0.2f)
-                        .dontAnimate()
                         .into(linkHolder.photo);
+                if (linkHolder.photo != null && linkHolder.photo.getDrawable() != null && ((GlideBitmapDrawable) linkHolder.photo.getDrawable()).getBitmap() != null)
+                    // I don't think this works
+                    mainPhoto = ((GlideBitmapDrawable) linkHolder.photo.getDrawable()).getBitmap();
                 /*
                 This code generates the title's background color using Palette and Glide but is acting very wonky...
                  */
@@ -373,9 +425,7 @@ public class MainActivity extends AppCompatActivity {
             return returnString;
         }
 
-
-//        public class LinkViewHolder extends RecyclerView.ViewHolder {
-        public class LinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public class LinkViewHolder extends RecyclerView.ViewHolder {
             TextView title;
             TextView additionalInfo;
             ImageView photo;
@@ -383,55 +433,82 @@ public class MainActivity extends AppCompatActivity {
 
             LinkViewHolder(View itemView) {
                 super(itemView);
-                itemView.setOnClickListener(this);
                 photo = (ImageView) itemView.findViewById(R.id.photo);
                 additionalInfo = (TextView) itemView.findViewById(R.id.additionalInfo);
                 title = (TextView) itemView.findViewById(R.id.title);
                 tile = (FrameLayout) itemView.findViewById(R.id.tile);
             }
 
-            @Override
-            public void onClick(View view) {
-                int itemPos = recyclerView.getChildLayoutPosition(view);
-                Link item = linksList.get(itemPos);
-
-                Intent galleryIntent = new Intent(view.getContext(), GalleryActivity.class);
-                galleryIntent.putExtra("com.scottlanoue.photochopbattles.RedditJson.Link", item);
-                if (!item.getDomain().contains("self"))
-                    Log.v("baby", " justin"); // Sometimes, the app crashes here
-                // We have to explore alternative options for sending this Bitmap
-                    try {
-                        galleryIntent.putExtra("BitmapImage", ((GlideBitmapDrawable) photo.getDrawable()).getBitmap());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                startActivity(galleryIntent);
-            }
+//  Deprecated onClick
+//            @Override
+//            public void onClick(View view) {
+//                int itemPos = recyclerView.getChildLayoutPosition(view);
+//                Link item = linksList.get(itemPos);
+//
+//                Intent galleryIntent = new Intent(view.getContext(), GalleryActivity.class);
+//                galleryIntent.putExtra("com.scottlanoue.photochopbattles.RedditJson.Link", item);
+//                if (!item.getDomain().contains("self"))
+//                    Log.v("baby", " justin"); // Sometimes, the app crashes here
+//                // We have to explore alternative options for sending this Bitmap
+//                    try {
+//                        galleryIntent.putExtra("BitmapImage", ((GlideBitmapDrawable) photo.getDrawable()).getBitmap());
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                startActivity(galleryIntent);
+//            }
         }
     }
 
-//    public class RecyclerViewSimpleOnItemTouchListener implements RecyclerView.OnItemTouchListener {
-//
-//        @Override
-//        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-//            return false;
-//        }
-//
-//        @Override
-//        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-//            Log.v("hmmmm ", " here");
-//        }
-//
-//        @Override
-//        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-//
-//        }
-//    }
-//
-//    public static interface ClickListener {
-//
-//        public void onClick(View view, int position);
-//
+    public class RecyclerViewOnItemTouchListener implements RecyclerView.OnItemTouchListener {
+
+        private GestureDetector gestureDetector;
+        private ClickListener clickListener;
+
+        public RecyclerViewOnItemTouchListener(Context context, RecyclerView recyclerView, ClickListener clickListener) {
+            gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onSingleTapConfirmed(MotionEvent e) {
+                    xClickPos = (int) e.getX();
+                    yClickPos = (int) e.getY();
+
+                    return super.onSingleTapConfirmed(e);
+                }
+
+                @Override
+                public boolean onDown(MotionEvent e) {
+                    return true;
+                }
+            });
+            this.clickListener = clickListener;
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+//            gestureDetector.onTouchEvent(e);
+            View child = rv.findChildViewUnder(e.getX(), e.getY());
+            if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
+                clickListener.onClick(child, rv.getChildAdapterPosition(child));
+            }
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+            Log.v("hmmmm ", " here");
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+        }
+    }
+
+    public static interface ClickListener {
+
+        public void onClick(View view, int position);
+
 //        public void onLongClick(View view, int position);
-//    }
+//        Don't think I neeed this yet...
+    }
 }
