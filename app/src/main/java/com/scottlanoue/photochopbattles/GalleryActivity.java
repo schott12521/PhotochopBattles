@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -41,14 +43,16 @@ public class GalleryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.gallery_layout);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            View galleryView = findViewById(R.id.gallery_frame_layout);
 //            galleryView.setVisibility(View.GONE);
 //            Animator anim = ViewAnimationUtils.createCircularReveal(galleryView,
 //                    (int) getIntent().getSerializableExtra("X"), (int) getIntent().getSerializableExtra("Y"), 0,
 //                    Math.max(galleryView.getWidth(), galleryView.getHeight()));
-//        }
+            getWindow().setEnterTransition(new Explode());
+        }
 
 
         xStartPos = (int) getIntent().getSerializableExtra("X");

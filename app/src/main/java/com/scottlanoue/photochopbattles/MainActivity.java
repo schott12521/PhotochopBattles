@@ -2,6 +2,7 @@ package com.scottlanoue.photochopbattles;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -19,6 +20,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.test.mock.MockDialogInterface;
+import android.transition.Explode;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
@@ -28,6 +30,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -72,10 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        super.onCreate(savedInstanceState);
+//        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+//        setContentView(R.layout.activity_main);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
             TypedValue typedValue = new TypedValue();
             Resources.Theme theme = getTheme();
             theme.resolveAttribute(R.color.primary700, typedValue, true);
@@ -83,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
             ActivityManager.TaskDescription td = new ActivityManager.TaskDescription(null, BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher), getResources().getColor(R.color.primary700));
             setTaskDescription(td);
         }
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         /*
         This creates the toolbar for the main activity
@@ -200,7 +208,13 @@ public class MainActivity extends AppCompatActivity {
                     if (mainPhoto != null) {
                         galleryIntent.putExtra("Bitmap", mainPhoto);
                     }
-                    startActivity(galleryIntent);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        getWindow().setExitTransition(new Explode());
+                        startActivity(galleryIntent, ActivityOptions.makeSceneTransitionAnimation(getParent()).toBundle());
+                        // this is crashing, keep working....
+                    } else {
+                        startActivity(galleryIntent);
+                    }
                     return true;
                 }
                 return false;
