@@ -210,11 +210,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         getWindow().setExitTransition(new Explode());
-                        startActivity(galleryIntent, ActivityOptions.makeSceneTransitionAnimation(getParent()).toBundle());
+                        Log.v("Transition: ", rv.toString());
+//                        startActivity(galleryIntent, ActivityOptions.makeSceneTransitionAnimation(getParent()).toBundle());
                         // this is crashing, keep working....
                     } else {
                         startActivity(galleryIntent);
                     }
+                    startActivity(galleryIntent);
                     return true;
                 }
                 return false;
